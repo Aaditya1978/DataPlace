@@ -1,6 +1,31 @@
 # DataPlace
 Repo of JM_Pro_Coders for SIH 2022
 
+# Setps to Run Code
+
+## For Frontend
+` cd frontend `
+
+` npm i ` ( Required only if some new modules are installed )
+
+` npm start `
+
+#### To install any module run command ` npm install <module-name> `
+
+## For Backend
+` pip install pipenv ` ( Run in root dir. and only for once if not done )
+
+` pipenv shell ` ( To activate virtualenv if not activated )
+
+` pipenv install ` ( To install all required packages )
+
+` cd backend `
+ 
+` python manage.py runserver `
+ 
+#### To install any new Packcage , run command ` pipenv install <package-name> `
+ 
+
 ## Problem Statement (DR719)
 Inter-linked platform for Campus Placement in Higher educational Institutions of India
 
