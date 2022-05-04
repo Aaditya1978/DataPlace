@@ -441,6 +441,7 @@ ul {
     border-top: 1px solid #284a92;
     padding-top: 100px;
     padding-bottom: 100px;
+    background-color: #041331;
 }
 
 .footer .footer-main .footer-logo {
@@ -464,7 +465,7 @@ ul {
     font-family: 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 500;
-    color: #000;
+    color: #fff;
     margin-top: 50px;
 }
 
@@ -472,7 +473,7 @@ ul {
     font-family: 'Inter', sans-serif;
     font-size: 22px;
     font-weight: 800;
-    color: #6a8dd9;
+    color: #fff;
     text-decoration: underline;
 }
 
@@ -481,14 +482,14 @@ ul {
     font-family: 'Inter', sans-serif;
     font-size: 17px;
     font-weight: 600;
-    color: #000;
+    color: #fff;
     margin-top: 6px;
     text-decoration: none;
     transition: transform .2s;
 }
 
 .footer .link .links a:hover {
-    color: #284a92;
+    color: #dfe8fa;
     text-decoration: underline;
     transform: scale(1.05);
 }

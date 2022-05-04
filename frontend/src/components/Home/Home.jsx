@@ -201,7 +201,7 @@ export default function Home() {
               </ButtonGroup>
             </div>
             {feature === 0 && (
-              <div className="f-college">
+              <div className="f-college animate__animated animate__bounceInLeft">
                 <Container>
                   <Row>
                     <Col lg={4} md={4}>
@@ -238,7 +238,7 @@ export default function Home() {
               </div>
             )}
             {feature === 1 && (
-              <div className="f-gov">
+              <div className="f-gov animate__animated animate__bounceInRight">
                 <Container>
                   <Row>
                     <Col lg={4} md={4}>
@@ -278,7 +278,7 @@ export default function Home() {
               </div>
             )}
             {feature === 2 && (
-              <div className="f-company">
+              <div className="f-company animate__animated animate__bounceInLeft">
                 <Container>
                   <Row>
                     <Col lg={4} md={4}>
