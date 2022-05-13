@@ -1,0 +1,92 @@
+// Animate the size, inside
+.sign-up-in .fill:hover,
+.sign-up-in .fill:focus {
+    box-shadow: inset 0 0 0 2em var(--hover);
+}
+
+// Animate the size, outside
+.sign-up-in .pulse:hover,
+.sign-up-in .pulse:focus {
+    animation: pulse 1s;
+    box-shadow: 0 0 0 2em transparent;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 var(--hover);
+    }
+}
+
+// Stack multiple shadows, one from the left, the other from the right
+.sign-up-in .close:hover,
+.sign-up-in .close:focus {
+    box-shadow:
+        inset -4.9em 0 0 0 var(--hover),
+        inset 4.9em 0 0 0 var(--hover);
+}
+
+// Size can also be negative; see how it's smaller than the element
+.sign-up-in .raise:hover,
+.sign-up-in .raise:focus {
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+}
+
+// Animating from the bottom
+.sign-up-in .up:hover,
+.sign-up-in .up:focus {
+    box-shadow: inset 0 -3.8em 0 0 var(--hover);
+}
+
+// And from the left
+.sign-up-in .slide:hover,
+.sign-up-in .slide:focus {
+    box-shadow: inset 7.5em 0 0 0 var(--hover);
+}
+
+// Multiple shadows, one on the outside, another on the inside
+.sign-up-in .offset {
+    box-shadow:
+        0.3em 0.3em 0 0 var(--color),
+        inset 0.3em 0.3em 0 0 var(--color);
+
+    &:hover,
+    &:focus {
+        box-shadow:
+            0 0 0 0 var(--hover),
+            inset 6em 3.5em 0 0 var(--hover);
+    }
+}
+
+//=== Set button colors
+$colors: (
+    fill: #a972cb,
+    pulse: #ef6eae,
+    close: #6a8dd9,
+    raise: #ffa260,
+    up: #6a8dd9,
+    slide: #e4cb58,
+    offset: #19bc8b
+);
+
+// Sass variables compile to a static string; CSS variables are dynamic and inherited
+// Loop through the map and set CSS custom properties using Sass variables
+@each $button,
+$color in $colors {
+    .#{$button} {
+        --color: #{$color};
+        --hover: #{adjust-hue($color, 0deg)};
+    }
+}
+
+// Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
+.sign-up-in button {
+    color: var(--color);
+    transition: 1s;
+
+    &:hover,
+    &:focus {
+        border-color: var(--hover);
+        color: #fff;
+    }
+}
