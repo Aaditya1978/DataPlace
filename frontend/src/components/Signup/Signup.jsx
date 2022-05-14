@@ -286,8 +286,8 @@ export default function Signup() {
 
               {/* information for college */}
               {feature === 1 && (
-                <Form onSubmit={() => setFeature(2)}>
-                  <Row className="my-mb-3">
+                <Form className="my-form-1" onSubmit={() => setFeature(2)}>
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -296,7 +296,7 @@ export default function Signup() {
                           id="input-text"
                           required
                           value={colName}
-                          onChange={(e) => setColName(e.taget.value)}
+                          onChange={(e) => setColName(e.target.value)}
                           spellcheck="false"
                         />
                         <span className="placeholder">College Name</span>
@@ -317,7 +317,7 @@ export default function Signup() {
                       </div>
                     </Col>
                   </Row>
-                  <Row className="my-mb-3">
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -349,7 +349,7 @@ export default function Signup() {
                       </div>
                     </Col>
                   </Row>
-                  <Row className="my-mb-3">
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -365,7 +365,7 @@ export default function Signup() {
                       </div>
                     </Col>
                   </Row>
-                  <Row className="my-mb-5">
+                  <Row style={{ marginBottom: "10vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -382,6 +382,16 @@ export default function Signup() {
                     </Col>
                     <Col>
                       <Form.Select
+                        style={{
+                          height: "5vh",
+                          fontSize: "1.8vh",
+                          outline: "none",
+                          marginBottom: "0vh",
+                          width: "100%",
+                          overflow: "hidden",
+                          borderRadius: "0.2vh solid",
+                          padding: "0vh",
+                        }}
                         value={colState}
                         onChange={(e) => setColState(e.target.value)}
                         defaultValue="--Choose State--"
@@ -465,8 +475,8 @@ export default function Signup() {
               )}
 
               {feature === 2 && (
-                <Form>
-                  <Row className="my-mb-3">
+                <Form className="my-form-1">
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -482,7 +492,7 @@ export default function Signup() {
                       </div>
                     </Col>
                   </Row>
-                  <Row className="my-mb-3">
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -508,27 +518,36 @@ export default function Signup() {
                           onChange={(e) => setColConfPassword(e.target.value)}
                           spellcheck="false"
                         />
-                        <span className="placeholder">Confirm Password</span>
+                        <span className="placeholder">Conf Password</span>
                       </div>
                     </Col>
                   </Row>
-                  <Row className="my-mb-5">
+                  <Row style={{ marginBottom: "19vh" }}>
                     <Col>
-                      <Form.Group controlId="formFile" className="my-mb-3">
-                        <Form.Control required type="file" />
+                      <Form.Group controlId="formFile">
+                        <Form.Control
+                          style={{
+                            height: "5vh",
+                            padding: "0vh",
+                            fontSize: "2.8vh",
+                          }}
+                          required
+                          type="file"
+                        />
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Row className="mt-5">
+                  <Row>
                     <Col>
                       <Form.Check
+                        style={{ fontSize: "2.5vh", position: "absolute" }}
                         inline
                         label="I agree to the terms and conditions"
                       />
                     </Col>
                   </Row>
                   {/* Previous and next page */}
-                  <Row className="mt-3">
+                  <Row style={{ marginTop: "8vh" }}>
                     <Col>
                       <Button
                         style={{ marginTop: 0 }}
@@ -553,8 +572,8 @@ export default function Signup() {
 
               {/* Area to provide further details */}
               {feature === 3 && (
-                <Form>
-                  <Row className="my-mb-3">
+                <Form className="my-form-1">
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block">
                         <input
@@ -580,11 +599,11 @@ export default function Signup() {
                           onChange={(e) => setCorpConfPassword(e.target.value)}
                           spellcheck="false"
                         />
-                        <span className="placeholder">Confirm Password</span>
+                        <span className="placeholder">Conf Password</span>
                       </div>
                     </Col>
                   </Row>
-                  <Row className="my-mb-5">
+                  <Row style={{ marginBottom: "24vh" }}>
                     <Col>
                       <Form.Group controlId="formFile" className="my-mb-3">
                         <Form.Control required type="file" />
@@ -600,7 +619,7 @@ export default function Signup() {
                     </Col>
                   </Row>
                   {/* Previous and next page */}
-                  <Row className="mt-3">
+                  <Row style={{ marginTop: "5vh" }}>
                     <Col>
                       <Button
                         style={{ marginTop: 0 }}
