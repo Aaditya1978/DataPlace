@@ -1,1 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.sign-up-in .main-card .credentials .credentials-form .login-add-height {
+    height: 35%;
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+    position: absolute;
+    width: 30%;
+    top: 38%;
+    left: 16%;
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection .activate-button.active,
+.sign-up-in .main-card .credentials .credentials-form .user-selection .activate-button:active {
+    background-color: #6a8dd9;
+    border-color: #6a8dd9;
+    color: white;
+    transform: scale(1.05);
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 950px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 45%;
+        left: 8%;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 45%;
+        left: 8%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 35%;
+        left: 31%;
+        z-index: 9;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 45%;
+        left: 28%;
+    }
+}
+
+@media screen and (max-width: 548px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 55%;
+        left: 22%;
+    }
+}
+
+@media screen and (max-width: 474px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 65%;
+        left: 18%;
+    }
+}
+
+@media screen and (max-width: 384px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 65%;
+        left: 18%;
+    }
+}
+
+@media screen and (max-width: 330px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        width: 90%;
+        left: 5%;
+    }
+}
