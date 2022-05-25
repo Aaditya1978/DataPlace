@@ -19,7 +19,7 @@
     "react-icons": "^4.3.1",
     "react-loader-spinner": "^6.0.0-0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.0",
+    "react-scripts": "^5.0.0",
     "react-scroll": "^1.8.7",
     "react-visibility-sensor": "^5.1.1",
     "sass": "^1.51.0",
