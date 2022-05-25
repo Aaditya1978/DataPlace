@@ -1,10 +1,10 @@
 from django.contrib import admin
-from .models import User
+from .models import CorpUser
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'password')
+class CorpUserAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'website', 'email', 'address', 'city', 'state', 'pincode', 'verification_doc')
 
 
 # Register your models here.
 
-admin.site.register(User, UserAdmin)
+admin.site.register(CorpUser, CorpUserAdmin)

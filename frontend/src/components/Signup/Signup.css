@@ -31,7 +31,7 @@ body {
 /* Outer body styling */
 .sign-up-in {
     font-size: large;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Inter', sans-serif;
     font-weight: bold;
 }
 
@@ -79,8 +79,8 @@ body {
     top: 10%;
     left: 5%;
     font-family: 'Inter', sans-serif;
-    font-size: 2vh;
-    color: rgb(160, 150, 150);
+    font-size: 2.3vh;
+    color: rgb(63, 63, 63);
     z-index: 9;
 }
 
@@ -136,9 +136,9 @@ body {
 /* =========================== */
 /* Separation line between header and main area */
 .sign-up-in .main-card .credentials .credentials-form .separation-line {
-    margin-top: 2vh;
-    color: "rgb(160, 150, 150)";
-    background-color: "rgb(160, 150, 150)";
+    margin-top: -1vh;
+    color: #6a8dd9;
+    background-color: #6a8dd9;
     height: 0.2vh;
 }
 
@@ -146,7 +146,7 @@ body {
     /* position: absolute; */
     /* width: 55%; */
     margin: 2%;
-    height: 20%;
+    height: 15%;
     text-align: center;
 }
 
@@ -172,16 +172,29 @@ body {
 
 .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
     position: absolute;
-    width: 30%;
-    top: 18%;
-    left: 16%;
+    width: 20%;
+    top: 20%;
+    left: 3%;
 }
 
 .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
     position: absolute;
-    width: 30%;
-    top: 28%;
-    left: 16%;
+    width: 20%;
+    top: 20%;
+    left: 26%;
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button {
+    padding: 1.5vh;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 2.2vh;
+    background-color: white;
+    color: #6a8dd9;
+    border: 0.2vh solid #6a8dd9;
+    border-radius: 9px;
+    overflow: hidden;
+    transition: 0.4s;
 }
 
 .sign-up-in .main-card .credentials .credentials-form .user-selection button:hover {
@@ -206,7 +219,7 @@ body {
 /* =================== */
 /* form styling */
 .sign-up-in .main-card .credentials .credentials-form .my-form-1 {
-    height: 40vh;
+    height: 50vh;
 }
 
 .sign-up-in .main-card .credentials .credentials-form .my-form-1 div.input-block {
@@ -217,25 +230,25 @@ body {
     position: absolute;
     display: flex;
     align-items: center;
-    color: #495055;
-    height: 5vh;
+    color: #252525;
+    height: 6vh;
     width: 100%;
     border-radius: 2vh;
-    font-size: 2vh;
+    font-size: 3vh;
     border: 0.3vh solid #D9D9D9;
     outline: none;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 .sign-up-in .main-card .credentials .credentials-form .my-form-1 div.input-block span.placeholder {
     position: absolute;
     margin: 1vh 0;
     padding: 0vh 0vh;
-    font-family: Roboto, sans-serif;
-    color: #6c757d;
+    font-family: 'Inter', sans-serif;
+    color: #2e2e2e;
     display: flex;
     align-items: center;
-    font-size: 2vh;
+    font-size: 2.3vh;
     left: 1vw;
     transition: all 0.2s;
     transform-origin: 0% 0%;
@@ -260,12 +273,19 @@ body {
     opacity: 1;
 }
 
+.sign-up-in .main-card .credentials .credentials-form .error-message{
+    color: red;
+    font-size: 2.5vh;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
 .sign-up-in .main-card .credentials .credentials-form .cancel-button {
     /* margin-top: 5%; */
     position: absolute;
     background-color: white;
-    color: #0087ca;
-    font-family: 'Courier New', Courier, monospace;
+    color: #6a8dd9;
+    font-family: 'Inter', sans-serif;
     font-size: 2.5vh;
     font-weight: bold;
     height: 6vh;
@@ -278,7 +298,7 @@ body {
 }
 
 .sign-up-in .main-card .credentials .credentials-form .cancel-button:focus {
-    color: #0087ca;
+    color: #6a8dd9;
     outline: none;
 }
 
@@ -287,8 +307,8 @@ body {
     position: absolute;
     left: 35vw;
     background-color: white;
-    color: #0087ca;
-    font-family: 'Courier New', Courier, monospace;
+    color: #6a8dd9;
+    font-family: 'Inter', sans-serif;
     font-size: 2.5vh;
     font-weight: bold;
     height: 6vh;
@@ -296,13 +316,45 @@ body {
     transition: 0.4s;
 }
 
+.sign-up-in .main-card .credentials .credentials-form .info-icon{
+    cursor: pointer;
+    margin-bottom: 0.5vh;
+}
+
+.sign-up-in .main-card .credentials .credentials-form .mytooltip {
+    position: relative;
+    z-index: 99;
+    visibility: visible;
+}
+  
+.sign-up-in .main-card .credentials .credentials-form .mytooltip .tooltiptext {
+    visibility: hidden;
+    width: 230px;
+    background-color: #2e2e2e;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 3px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 105%;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+  
+.sign-up-in .main-card .credentials .credentials-form .mytooltip:hover .tooltiptext {
+    visibility: visible;
+  }
 
 .sign-up-in .main-card .credentials .credentials-form .submit-button:hover{
     color: white;
 }
 
-.sign-up-in .main-card .credentials .credentials-form .submit-button:focus {
-    color: #0087ca;
+.sign-up-in .main-card .credentials .credentials-form .submit-button:active, :focus {
+    color: #6a8dd9;
+    background-color: #fff;
     outline: none;
 }
 
@@ -352,6 +404,24 @@ body {
     z-index: 2;
 }
 
+.terms:hover{
+    cursor: pointer;
+    color: #0087ca;
+}
+
+
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.spinner svg{
+    height: 80vh;
+    width: 80vh;
+}
 
 /* ---------------------------------------- */
 /* media queries */
@@ -429,13 +499,13 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 45%;
-        left: 8%;
+        width: 20%;
+        left: 3%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 45%;
-        left: 8%;
+        width: 20%;
+        left: 26%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .my-form-1 div.input-block span.placeholder {
@@ -478,14 +548,14 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 35%;
-        left: 31%;
+        width: 20%;
+        left: 3%;
         z-index: 9;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 35%;
-        left: 31%;
+        width: 20%;
+        left: 26%;
         z-index: 9;
     }
 
@@ -531,13 +601,13 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 45%;
-        left: 28%;
+        width: 20%;
+        left: 3%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 45%;
-        left: 28%;
+        width: 20%;
+        left: 26%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .cancel-button {
@@ -567,13 +637,13 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 55%;
-        left: 22%;
+        width: 20%;
+        left: 3%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 55%;
-        left: 22%;
+        width: 20%;
+        left: 26%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .separation-line {
@@ -611,13 +681,13 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 65%;
-        left: 18%;
+        width: 28%;
+        left: 3%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 65%;
-        left: 18%;
+        width: 28%;
+        left: 34%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .cancel-button {
@@ -645,13 +715,13 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 65%;
-        left: 18%;
+        width: 32%;
+        left: 3%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 65%;
-        left: 18%;
+        width: 32%;
+        left: 39%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .my-form-1 div.input-block span.placeholder {
@@ -681,13 +751,13 @@ body {
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
-        width: 90%;
-        left: 5%;
+        width: 40%;
+        left: 3%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(2) {
-        width: 90%;
-        left: 5%;
+        width: 40%;
+        left: 50%;
     }
 
     .sign-up-in .main-card .credentials .credentials-form .cancel-button {
