@@ -102,9 +102,9 @@ export default function Login() {
               {/* Information for corporate */}
               {feature === 0 && (
                 <Form className="my-form-1" onSubmit={() => setFeature(3)}>
-                  <Row style={{ marginBottom: "7vh" }}>
+                  <Row style={{ marginBottom: "10vh" }}>
                     <Col>
-                      <div className="input-block">
+                      <div className="input-block login-input-wrapper">
                         <input
                           type="email"
                           name="input-text"
@@ -118,9 +118,9 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
-                  <Row style={{ marginBottom: "12vh" }}>
+                  <Row style={{ marginBottom: "25vh" }}>
                     <Col>
-                      <div className="input-block">
+                      <div className="input-block login-input-wrapper">
                         <input
                           type="password"
                           name="input-text"
@@ -156,9 +156,9 @@ export default function Login() {
               {/* information for college */}
               {feature === 1 && (
                 <Form className="my-form-1" onSubmit={() => setFeature(2)}>
-                  <Row style={{ marginBottom: "7vh" }}>
+                  <Row style={{ marginBottom: "10vh" }}>
                     <Col>
-                      <div className="input-block">
+                      <div className="input-block login-input-wrapper">
                         <input
                           type="email"
                           name="input-text"
@@ -172,9 +172,9 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
-                  <Row style={{ marginBottom: "12vh" }}>
+                  <Row style={{ marginBottom: "25vh" }}>
                     <Col>
-                      <div className="input-block">
+                      <div className="input-block login-input-wrapper">
                         <input
                           type="password"
                           name="input-text"
@@ -210,9 +210,9 @@ export default function Login() {
               {/* Information for government */}
               {feature === 4 && (
                 <Form className="my-form-1">
-                  <Row style={{ marginBottom: "7vh" }}>
+                  <Row style={{ marginBottom: "10vh" }}>
                     <Col>
-                      <div className="input-block">
+                      <div className="input-block login-input-wrapper">
                         <input
                           type="email"
                           name="input-text"
@@ -226,9 +226,9 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
-                  <Row style={{ marginBottom: "12vh" }}>
+                  <Row style={{ marginBottom: "25vh" }}>
                     <Col>
-                      <div className="input-block">
+                      <div className="input-block login-input-wrapper">
                         <input
                           type="password"
                           name="input-text"
