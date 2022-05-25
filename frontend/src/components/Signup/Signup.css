@@ -157,6 +157,19 @@ body {
     top: 2%;
 }
 
+.sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button {
+    padding: 1.6vh;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+    font-size: 1.6vh;
+    background-color: white;
+    color: #6a8dd9;
+    border: 0.2vh solid #6a8dd9;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
 .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(1) {
     position: absolute;
     width: 30%;
@@ -171,21 +184,9 @@ body {
     left: 16%;
 }
 
-.sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button {
-    padding: 1.6vh;
-    font-family: 'Inter', sans-serif;
-    font-weight: bold;
-    font-size: 1.6vh;
-    background-color: white;
-    color: #6a8dd9;
-    border: 0.2vh solid #6a8dd9;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: 0.4s;
-}
-
 .sign-up-in .main-card .credentials .credentials-form .user-selection button:hover {
     color: white;
+    background-color: #6a8dd9;
     transform: scale(1.05);
 }
 
