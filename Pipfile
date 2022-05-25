@@ -11,6 +11,7 @@ djongo = "*"
 python-dotenv = "*"
 pymongo = "==3.12.3"
 django-googledrive-storage = "*"
+dnspython = "*"
 
 [dev-packages]
 
