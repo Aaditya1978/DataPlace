@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'server',
+    'gdstorage'
 ]
 
 MIDDLEWARE = [
@@ -141,3 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000'
 ]
+
+
+# Google Drive Storage Settings
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
