@@ -1,5 +1,82 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
 
-.dashboard .ab{
+.dashboard {
+    margin-top: 150px;
+    margin-left: 80px;
+    margin-right:80px;
+}
+.dashboard  .accitem{
+    background-color: #afbedf;
+    border: 5px solid #afbedf;
+    font-size: 20px;
+}
 
+.dashboard  .accitem span{
+    margin-left: auto;
+    color:  #4d622c;
+    font-size: 30px;
+    font-weight: bold;
+}
+.dashboard  .accitem p{
+    font-weight: bold;
+}
+.dashboard .cantainer{
+    margin-top: 40px ;
+}
+
+@media screen and (min-width: 1441px)and (max-width: 2560px){
+
+    .dashboard  .accitem span{
+        margin-left: auto;
+        color:  #4d622c;
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .dashboard  .accitem p{
+        font-size: 30px;
+    }
+
+    .dashboard  .cantainer h5{
+        font-size: 30px;
+    }
+
+    .dashboard  .cantainer p{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+}
+
+@media screen and (max-width: 1024px){
+    .dashboard {
+        margin-top: 55px;
+    }
+    
+}
+
+@media screen and (max-width: 425px){
+    .dashboard {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .dashboard  .accitem span{
+        font-size: 20px;
+    }
+    
+    .dashboard  .accitem p{
+        font-size: 15px;
+        font-weight: bold;
+    }
+
+    .dashboard  .cantainer p{
+        font-size: 15px;
+    }
+}
+
+@media screen  and (max-width:200px){
+    .dashboard  .accitem span{
+        font-size: 10px;
+    }
 }
