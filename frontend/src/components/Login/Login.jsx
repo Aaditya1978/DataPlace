@@ -4,7 +4,7 @@ import "../Signup/Signup.css";
 import "../Signup/Signup.scss";
 import "./Login.css";
 import logo from "../../images/logo.png";
-import front_img from "../../images/sign_up_in_front_img_4.png";
+import front_img from "../../images/Login_front_img_1.png";
 import front_img2 from "../../images/sign_up_in_front_img2.png";
 import {
   Button,
@@ -114,7 +114,7 @@ export default function Login() {
                           onChange={(e) => setCorpEmail(e.target.value)}
                           spellcheck="false"
                         />
-                        <span className="placeholder">Email Id</span>
+                        <span className="placeholder">Corporate Email</span>
                       </div>
                     </Col>
                   </Row>
@@ -168,7 +168,7 @@ export default function Login() {
                           onChange={(e) => setColId(e.target.value)}
                           spellcheck="false"
                         />
-                        <span className="placeholder">College Id</span>
+                        <span className="placeholder">College Email</span>
                       </div>
                     </Col>
                   </Row>

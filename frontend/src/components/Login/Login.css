@@ -10,8 +10,8 @@
 }
 
 .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
-    top: 38%;
-    left: 16%;
+    width: 100%;
+    font-size: 1.75vh;
 }
 
 .sign-up-in .main-card .credentials .credentials-form .user-selection .activate-button.active,
