@@ -1,37 +1,35 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.css";
-import {Accordion } from "react-bootstrap";
+import { Accordion } from "react-bootstrap";
 
 export default function Dashboard() {
     return (
         <div className="dashboard">
-            <Accordion className="ab" defaultActiveKey="0">
-                <Accordion.Item eventKey="0">
-                    <Accordion.Header>Accordion Item #1</Accordion.Header>
+            <Accordion  defaultActiveKey="0">
+                <Accordion.Item className="accitem" eventKey="0">
+                    <Accordion.Header>
+                        <span > Thank You For Registering!</span>
+                    </Accordion.Header>
+
                     <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                        est laborum.
+                        <p> Please wait for sometime.
+                            Your registration is under the process of verification. Once your form get verified then you will be able to experience the DATAPLACE platform. <br />
+                            Your form verification will be notified to you through your registered e-mail/sms.
+                        </p>
                     </Accordion.Body>
                 </Accordion.Item>
-                <Accordion.Item eventKey="1">
-                    <Accordion.Header>Accordion Item #2</Accordion.Header>
-                    <Accordion.Body>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                        est laborum.
-                    </Accordion.Body>
-                </Accordion.Item>
+
             </Accordion>
+
+            <div className="cantainer">
+                <h5>If you are the admin of this page</h5>
+                <p>check out the docs</p>
+                <h5>If you are the visitor of this page</h5>
+                <p>wait a few minutes and refresh the page</p>
+            </div>
         </div>
+
+
     );
 }
