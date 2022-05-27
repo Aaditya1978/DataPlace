@@ -1,1 +1,1 @@
-web: gunicorn dataplace.wsgi
+web: gunicorn backend.wsgi
