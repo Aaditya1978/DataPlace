@@ -14,6 +14,7 @@ django-googledrive-storage = "*"
 dnspython = "*"
 django-heroku = "*"
 gunicorn = "*"
+pyjwt = "*"
 
 [dev-packages]
 
