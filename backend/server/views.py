@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -5,17 +6,49 @@ from rest_framework import status
 from .serializers import CorpUserSerializer
 from .serializers import ColUserSerializer
 from django.contrib.auth.hashers import make_password
+import jwt
+import os
+from server.helper import send_corp_email, send_coll_email
 from .models import CorpUser
 from .models import ColUser
 
+
+jwt_key = os.environ.get('JWT_KEY')
+jwt_algo = os.environ.get('JWT_ALGO')
+
+
 # Create your views here.
+
+class VerifyToken(APIView):
+    def get(self, request):
+        token = request.headers['Authorization']
+        if token is None:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        try:
+            payload = jwt.decode(token, jwt_key, algorithms=jwt_algo)
+            email = payload['email']
+            if payload['type'] == 'corp':
+                user = CorpUser.objects.get(email=email)
+                serializer = CorpUserSerializer(user)
+                del serializer.data['password']
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            elif payload['type'] == 'coll':
+                user = ColUser.objects.get(email=email)
+                serializer = ColUserSerializer(user)
+                del serializer.data['password']
+                return Response(serializer.data, status=status.HTTP_200_OK)
+        except jwt.ExpiredSignatureError:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        except jwt.InvalidTokenError:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 class CorpUserView(APIView):
 
     def get(self, request):
-        corp_user = CorpUser.objects.all()
-        serializer = CorpUserSerializer(corp_user, many=True)
-        for obj in serializer.data:
-            del obj['password']
+        email = request.query_params['email']
+        corp_user = CorpUser.objects.get(email=email)
+        serializer = CorpUserSerializer(corp_user)
+        del serializer.data['password']
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self, request):
@@ -48,7 +81,10 @@ class CorpUserView(APIView):
             
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                send_corp_email(email, name=data['name'])
+                # set exp to 5 hours
+                token = jwt.encode({"email": email , "type": "corp"}, jwt_key, algorithm=jwt_algo)
+                return Response({'token': token}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         elif request.data['type'] == 'login':
@@ -57,7 +93,8 @@ class CorpUserView(APIView):
             if CorpUser.objects.filter(email=email).exists():
                 user = CorpUser.objects.get(email=email)
                 if user.password == make_password(password):
-                    return Response({'success': 'Login Successful'}, status=status.HTTP_200_OK)
+                    token = jwt.encode({"email": email , "type": "corp"}, jwt_key, algorithm=jwt_algo)
+                    return Response({'success': 'Login Successful', 'token': token}, status=status.HTTP_200_OK)
                 else:
                     return Response({'error': 'Invalid Password'}, status=status.HTTP_400_BAD_REQUEST)
             else:
@@ -69,10 +106,10 @@ class CorpUserView(APIView):
 
 class ColUserView(APIView):
     def get(self , request):
-        coll_user = ColUser.objects.all()
-        serializer = ColUserSerializer(coll_user, many=True)
-        for obj in serializer.data:
-            del obj['password']
+        email = request.query_params['email']
+        coll_user = ColUser.objects.get(email=email)
+        serializer = ColUserSerializer(coll_user)
+        del serializer.data['password']
         return Response(serializer.data, status = status.HTTP_200_OK)
 
     def post(self , request):
@@ -102,15 +139,19 @@ class ColUserView(APIView):
 
             if serializer.is_valid():
                 serializer.save()
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
+                send_coll_email(email, name=data['name'])
+                token = jwt.encode({"email": email , "type": "coll"}, jwt_key, algorithm=jwt_algo)
+                return Response({'token': token}, status=status.HTTP_201_CREATED)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
         elif request.data['type'] == 'login':
             email = request.data['email']
             password = request.data['password']
             if ColUser.objects.filter(email=email).exists():
                 user = ColUser.objects.get(email=email)
                 if user.password == make_password(password):
-                    return Response({'success': 'Login Successful'}, status=status.HTTP_200_OK)
+                    token = jwt.encode({"email": email , "type": "coll"}, jwt_key, algorithm=jwt_algo)
+                    return Response({'success': 'Login Successful','token': token}, status=status.HTTP_200_OK)
                 else:
                     return Response({'error': 'Invalid Password'}, status=status.HTTP_400_BAD_REQUEST)
             else:
