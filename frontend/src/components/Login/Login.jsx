@@ -226,7 +226,7 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
-                  <Row style={{ marginBottom: "25vh" }}>
+                  <Row style={{ marginBottom: "20vh" }}>
                     <Col>
                       <div className="input-block login-input-wrapper">
                         <input
