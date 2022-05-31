@@ -12,12 +12,14 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
+import django_heroku
 import os 
 
 load_dotenv()
 
 mongo_user = os.environ.get('MONGO_USER')
 mongo_password = os.environ.get('MONGO_PASSWORD')
+enviroment = os.environ.get('ENVIRO')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,9 +32,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!-ea^jxwk)t#ee*lgm1!274gyq%1@u(2_mvlao91859($)p59p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if enviroment == 'production':
+    DEBUG = False
+else:
+    DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'dataplace-api.herokuapp.com']
 
 
 # Application definition
@@ -140,9 +145,19 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
+     'http://localhost:3000',
+     'https://dataplace.netlify.app'
 ]
 
 
 # Google Drive Storage Settings
 GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = None
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+
+django_heroku.settings(locals())
