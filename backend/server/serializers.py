@@ -1,7 +1,13 @@
 from rest_framework import serializers
 from .models import CorpUser
+from .models import ColUser
 
 class CorpUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CorpUser
-        fields = ['id', 'name', 'website', 'email', 'contact', 'address', 'city', 'state', 'pincode', 'password', 'verification_doc']
+        fields = ['id', 'name', 'website', 'email', 'contact', 'address', 'city', 'state', 'pincode', 'password', 'verification_doc', 'verified', 'verification_status', 'created_at']
+
+class ColUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ColUser
+        fields = ['id', 'name', 'website', 'email', 'contact', 'address', 'city', 'state', 'pincode', 'password', 'verification_doc', 'verified', 'verification_status', 'created_at']

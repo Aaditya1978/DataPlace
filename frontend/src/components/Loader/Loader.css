@@ -3,7 +3,7 @@
 .loader{
     position: absolute;
     top: 20vh;
-    left: 40%;
+    left: 40vw;
     z-index: 1;
 }
 
@@ -223,4 +223,51 @@
         border-radius: 50%;
     }
 
+}
+
+@media screen and (max-width: 768px){
+    .loader{
+        top: 20vh;
+        left: 30vw;
+    }
+}
+
+@media screen and (max-width: 520px){
+    .loader{
+        top: 20vh;
+        left: 30vw;
+    }
+
+    .loader img{
+        width: 180px;
+    }
+    
+    .loader .logo-name{
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 40px;
+        font-weight: bold;
+        color: #6a8dd9;
+        z-index: 1;
+    }
+}
+
+@media screen and (max-width: 385px){
+    .loader{
+        top: 20vh;
+        left: 25w;
+    }
+
+    .loader img{
+        width: 160px;
+    }
+    
+    .loader .logo-name{
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 37px;
+        font-weight: bold;
+        color: #6a8dd9;
+        z-index: 1;
+    }
 }

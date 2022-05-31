@@ -38,6 +38,8 @@ export default function Signup() {
   const [colPassword, setColPassword] = useState("");
   const [colConfPassword, setColConfPassword] = useState("");
   const [colId, setColId] = useState("");
+  const [colFile, setColFile] = useState("");
+  const [onColSubmit, setOnColSubmit] = useState(false);
 
   const [error, setError] = useState("");
   const [isError, setIsError] = useState(false);
@@ -283,8 +285,8 @@ export default function Signup() {
         },
       })
       .then((res) => {
+        localStorage.setItem("token", res.data.token);
         setOnCorpSubmit(false);
-        // erase previous history with /
         window.history.replaceState({}, document.title, "/");
         navigate("/dashboard");
       })
@@ -297,6 +299,10 @@ export default function Signup() {
           setIsError(false);
         }, 3000);
       });
+  };
+
+  const handleColFile = (e) => {
+    setColFile(e.target.files[0]);
   };
 
   const handleColSubmit = (e) => {
@@ -364,11 +370,50 @@ export default function Signup() {
       }, 3000);
       return;
     }
+
+    setOnColSubmit(true);
+
+    const formData = new FormData();
+    formData.append("type", "signup");
+    formData.append("name", colName);
+    formData.append("email", colEmail);
+    formData.append("website", colWeb);
+    formData.append("password", colPassword);
+    formData.append("contact", colContact);
+    formData.append("address", colAddress);
+    formData.append("state", colState);
+    formData.append("city", colCity);
+    formData.append("pincode", colPin);
+    formData.append("verification_doc", colFile);
+    formData.append("verification_doc_name", colFile.name);
+
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/coll_user`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        setOnColSubmit(false);
+        window.history.replaceState({}, document.title, "/");
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        setOnColSubmit(false);
+        setError(err.response.data.error);
+        setIsError(true);
+        setTimeout(() => {
+          setError("");
+          setIsError(false);
+        }, 3000);
+      });
+
   };
 
   return (
     <>
-      {onCorpSubmit ? (
+      {onCorpSubmit || onColSubmit ? (
         <div className="spinner">
           <InfinitySpin color="#0087ca" />
         </div>
@@ -882,6 +927,7 @@ export default function Signup() {
                             }}
                             required
                             type="file"
+                            onChange={handleColFile}
                           />
                         </Form.Group>
                       </Col>
