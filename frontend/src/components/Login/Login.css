@@ -1,1 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.sign-up-in .main-card .credentials .credentials-form .login-add-height {
+    height: 20%;
+}
+
+.login-input-wrapper {
+    left: 10%;
+    width: 80%;
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+    width: 100%;
+    font-size: 1.75vh;
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection .activate-button.active,
+.sign-up-in .main-card .credentials .credentials-form .user-selection .activate-button:active {
+    background-color: #6a8dd9;
+    border-color: #6a8dd9;
+    color: white;
+    transform: scale(1.05);
+}
+
+.sign-up-in .main-card .credentials .credentials-form .user-selection button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+@media screen and (max-width: 950px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        font-size: 1.5vh;
+        padding: 0.1vh;
+        font-weight: 900;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .sign-up-in .main-card .credentials .credentials-form .user-selection .upper-button button:nth-child(3) {
+        z-index: 9;
+    }
+}
