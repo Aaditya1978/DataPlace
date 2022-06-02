@@ -9,6 +9,7 @@ export default function Dashboard() {
 
   const [verified, setVerified] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState("");
+  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -21,8 +22,13 @@ export default function Dashboard() {
         },
       })
       .then((res) => {
-        setVerified(res.data.verified);
-        setVerificationStatus(res.data.verification_status);
+        setUserType(res.data.type);
+        if (res.data.type === "gov") {
+          setVerified(true);
+          setVerificationStatus("Verified");
+        }
+        setVerified(res.data.data.verified);
+        setVerificationStatus(res.data.data.verification_status);
       })
       .catch((err) => {
         localStorage.removeItem("token");
@@ -32,7 +38,7 @@ export default function Dashboard() {
 
   return (
     <>
-      {!verified && verificationStatus === "Pending" && (
+      {!verified && verificationStatus === "Pending" ? (
         <div className="dashboard">
           <Accordion defaultActiveKey="0">
             <Accordion.Item className="accitem" eventKey="0">
@@ -59,6 +65,10 @@ export default function Dashboard() {
             <h5>If you are the visitor of this page</h5>
             <p>wait a few minutes and refresh the page</p>
           </div>
+        </div>
+      ) : (
+        <div className="dashboard-main">
+          Hello {userType}
         </div>
       )}
     </>
