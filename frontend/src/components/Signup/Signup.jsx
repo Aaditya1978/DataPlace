@@ -10,6 +10,7 @@ import front_img2 from "../../images/sign_up_in_front_img2.png";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { Button, Row, Col, Form, Modal } from "react-bootstrap";
 import { InfinitySpin } from "react-loader-spinner";
+import stateData from "../../utils/state.json";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Signup() {
   const [corpContact, setCorpContact] = useState("");
   const [corpEmail, setCorpEmail] = useState("");
   const [corpAddress, setCorpAddress] = useState("");
-  const [corpCity, setCorpCity] = useState("");
+  const [corpDist, setCorpDist] = useState("");
   const [corpState, setCorpState] = useState("--Choose State--");
   const [corpPin, setCorpPin] = useState("");
   const [corpPassword, setCorpPassword] = useState("");
@@ -32,7 +33,7 @@ export default function Signup() {
   const [colContact, setColContact] = useState("");
   const [colEmail, setColEmail] = useState("");
   const [colAddress, setColAddress] = useState("");
-  const [colCity, setColCity] = useState("");
+  const [colDist, setColDist] = useState("");
   const [colState, setColState] = useState("--Choose State--");
   const [colPin, setColPin] = useState("");
   const [colPassword, setColPassword] = useState("");
@@ -273,7 +274,7 @@ export default function Signup() {
     formData.append("contact", corpContact);
     formData.append("address", corpAddress);
     formData.append("state", corpState);
-    formData.append("city", corpCity);
+    formData.append("district", corpDist);
     formData.append("pincode", corpPin);
     formData.append("verification_doc", corpFile);
     formData.append("verification_doc_name", corpFile.name);
@@ -382,7 +383,7 @@ export default function Signup() {
     formData.append("contact", colContact);
     formData.append("address", colAddress);
     formData.append("state", colState);
-    formData.append("city", colCity);
+    formData.append("district", colDist);
     formData.append("pincode", colPin);
     formData.append("verification_doc", colFile);
     formData.append("verification_doc_name", colFile.name);
@@ -408,7 +409,6 @@ export default function Signup() {
           setIsError(false);
         }, 3000);
       });
-
   };
 
   return (
@@ -435,6 +435,7 @@ export default function Signup() {
               <span className="logo-name">DataPlace</span>
               <span className="login-text">
                 Already A User?
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
                 <a
                   className="login-btn hover-underline-animation"
                   onClick={handleLogin}
@@ -556,20 +557,6 @@ export default function Signup() {
                     </Row>
                     <Row style={{ marginBottom: "1vh" }}>
                       <Col>
-                        <div className="input-block">
-                          <input
-                            type="text"
-                            name="input-text"
-                            id="input-text"
-                            required
-                            value={corpCity}
-                            onChange={(e) => setCorpCity(e.target.value)}
-                            spellCheck="false"
-                          />
-                          <span className="placeholder">City</span>
-                        </div>
-                      </Col>
-                      <Col>
                         <Form.Select
                           onChange={(e) => setCorpState(e.target.value)}
                           value={corpState}
@@ -584,43 +571,37 @@ export default function Signup() {
                           }}
                         >
                           <option disabled>--Choose State--</option>
-                          <option>Andaman and Nicobar (UT)</option>
-                          <option>Andhra Pradesh</option>
-                          <option>Arunachal Pradesh</option>
-                          <option>Assam</option>
-                          <option>Bihar</option>
-                          <option>Chandigarh (UT)</option>
-                          <option>Chhattisgarh</option>
-                          <option>Dadra and Nagar Haveli (UT)</option>
-                          <option>Daman and Diu (UT)</option>
-                          <option>Delhi</option>
-                          <option>Goa</option>
-                          <option>Gujarat</option>
-                          <option>Haryana</option>
-                          <option>Himachal Pradesh</option>
-                          <option>jammu and Kashmir</option>
-                          <option>Jharkhand</option>
-                          <option>Karnataka</option>
-                          <option>Kerala</option>
-                          <option>Ladakh</option>
-                          <option>Lakshadweep (UT)</option>
-                          <option>Madhya Pradesh</option>
-                          <option>Maharashtra</option>
-                          <option>Manipur</option>
-                          <option>Meghalaya</option>
-                          <option>Mizoram</option>
-                          <option>Nagaland</option>
-                          <option>Orissa</option>
-                          <option>Puducherry (UT)</option>
-                          <option>Punjab</option>
-                          <option>Rajasthan</option>
-                          <option>Sikkim</option>
-                          <option>Tamil Nadu</option>
-                          <option>Telangana</option>
-                          <option>Tripura</option>
-                          <option>Uttar Pradesh</option>
-                          <option>Uttarakhand</option>
-                          <option>West Bengal</option>
+                          {stateData.states.map((state) => (
+                            <option key={state.state} value={state.state}>
+                              {state.state}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      </Col>
+                      <Col>
+                        <Form.Select
+                          onChange={(e) => setCorpDist(e.target.value)}
+                          value={corpDist}
+                          style={{
+                            height: "5vh",
+                            outline: "none",
+                            marginBottom: "0vh",
+                            width: "100%",
+                            overflow: "hidden",
+                            borderRadius: "0.2vh solid",
+                            padding: "0.2vh",
+                          }}
+                        >
+                          <option disabled>--Choose District--</option>
+                          {stateData.states
+                            .filter((state) => state.state === corpState)
+                            .map((state) =>
+                              state.districts.map((district) => (
+                                <option key={district} value={district}>
+                                  {district}
+                                </option>
+                              ))
+                            )}
                         </Form.Select>
                       </Col>
                       <Col>
@@ -749,20 +730,6 @@ export default function Signup() {
                     </Row>
                     <Row style={{ marginBottom: "3vh" }}>
                       <Col>
-                        <div className="input-block">
-                          <input
-                            type="text"
-                            name="input-text"
-                            id="input-text"
-                            required
-                            value={colCity}
-                            onChange={(e) => setColCity(e.target.value)}
-                            spellCheck="false"
-                          />
-                          <span className="placeholder">City</span>
-                        </div>
-                      </Col>
-                      <Col>
                         <Form.Select
                           style={{
                             height: "5vh",
@@ -777,43 +744,37 @@ export default function Signup() {
                           onChange={(e) => setColState(e.target.value)}
                         >
                           <option disabled>--Choose State--</option>
-                          <option>Andaman and Nicobar (UT)</option>
-                          <option>Andhra Pradesh</option>
-                          <option>Arunachal Pradesh</option>
-                          <option>Assam</option>
-                          <option>Bihar</option>
-                          <option>Chandigarh (UT)</option>
-                          <option>Chhattisgarh</option>
-                          <option>Dadra and Nagar Haveli (UT)</option>
-                          <option>Daman and Diu (UT)</option>
-                          <option>Delhi</option>
-                          <option>Goa</option>
-                          <option>Gujarat</option>
-                          <option>Haryana</option>
-                          <option>Himachal Pradesh</option>
-                          <option>jammu and Kashmir</option>
-                          <option>Jharkhand</option>
-                          <option>Karnataka</option>
-                          <option>Kerala</option>
-                          <option>Ladakh</option>
-                          <option>Lakshadweep (UT)</option>
-                          <option>Madhya Pradesh</option>
-                          <option>Maharashtra</option>
-                          <option>Manipur</option>
-                          <option>Meghalaya</option>
-                          <option>Mizoram</option>
-                          <option>Nagaland</option>
-                          <option>Orissa</option>
-                          <option>Puducherry (UT)</option>
-                          <option>Punjab</option>
-                          <option>Rajasthan</option>
-                          <option>Sikkim</option>
-                          <option>Tamil Nadu</option>
-                          <option>Telangana</option>
-                          <option>Tripura</option>
-                          <option>Uttar Pradesh</option>
-                          <option>Uttarakhand</option>
-                          <option>West Bengal</option>
+                          {stateData.states.map((state) => (
+                            <option key={state.state} value={state.state}>
+                              {state.state}
+                            </option>
+                          ))}
+                        </Form.Select>
+                      </Col>
+                      <Col>
+                        <Form.Select
+                          onChange={(e) => setColDist(e.target.value)}
+                          value={colDist}
+                          style={{
+                            height: "5vh",
+                            outline: "none",
+                            marginBottom: "0vh",
+                            width: "100%",
+                            overflow: "hidden",
+                            borderRadius: "0.2vh solid",
+                            padding: "0.2vh",
+                          }}
+                        >
+                          <option disabled>--Choose District--</option>
+                          {stateData.states
+                            .filter((state) => state.state === colState)
+                            .map((state) =>
+                              state.districts.map((district) => (
+                                <option key={district} value={district}>
+                                  {district}
+                                </option>
+                              ))
+                            )}
                         </Form.Select>
                       </Col>
                       <Col>
