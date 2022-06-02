@@ -41,15 +41,43 @@ export default function Login() {
 
   const [onSubmit, setOnSubmit] = useState(false);
 
+  const [otpEmail, setOtpEmail] = useState("");
+
+  const [modalError, setModalError] = useState(false);
+
+  const [otp, setOtp] = useState("");
+
+  const [userOtp, setUserOtp] = useState("");
+
+  const [newPassword, setNewPassword] = useState("");
+  
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const handleSignup = () => {
     navigate("/signup");
   };
 
-  const handleCorpModalShow = () => setCorpModal(true);
-  const handleCorpModalClose = () => setCorpModal(false);
+  const handleCorpModalShow = () => {
+    setIsCorp(true);
+    setCorpModal(true);
+  }
 
-  const handleColModalShow = () => setColModal(true);
-  const handleColModalClose = () => setColModal(false);
+  const handleCorpModalClose = () => {
+    setIsCorp(null);
+    setCorpModal(false);
+  }
+
+  const handleColModalShow = () => {
+    setIsCorp(false);
+    setColModal(true);
+  }
+
+  const handleColModalClose = () => {
+    setIsCorp(null);
+    setColModal(false);
+  }
 
   const handleCorpLogin = (e) => {
     e.preventDefault();
@@ -68,9 +96,10 @@ export default function Login() {
       })
       .catch((err) => {
         setCorpError(true);
-        setErrorMessage(err.response.data.message);
+        setErrorMessage(err.response.data.error);
         setOnSubmit(false);
         setTimeout(() => {
+          setErrorMessage("");
           setCorpError(false);
         }, 3000);
       });
@@ -93,9 +122,10 @@ export default function Login() {
       })
       .catch((err) => {
         setColError(true);
-        setErrorMessage(err.response.data.message);
+        setErrorMessage(err.response.data.error);
         setOnSubmit(false);
         setTimeout(() => {
+          setErrorMessage("");
           setColError(false);
         }, 3000);
       });
@@ -118,11 +148,106 @@ export default function Login() {
       })
       .catch((err) => {
         setGovError(true);
-        setErrorMessage(err.response.data.message);
+        setErrorMessage(err.response.data.error);
         setOnSubmit(false);
         setTimeout(() => {
+          setErrorMessage("");
           setGovError(false);
         }, 3000);
+      });
+  }
+
+  const handleOTPSend = (e) => {
+    e.preventDefault();
+    let type = "";
+    if(isCorp === true)
+      type = "corp";
+    else if(isCorp === false)
+      type = "coll";
+    setButtonDisabled(true);
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/send_password_mail`, {
+        type: type,
+        email: otpEmail,
+      })
+      .then((res) => {
+        setButtonDisabled(false);
+        let otp = String(res.data.otp);
+        setOtp(otp);
+        setResetPassword(1);
+      })
+      .catch((err) => {
+        setButtonDisabled(false);
+        setModalError(true);
+        setErrorMessage(err.response.data.error);
+        setTimeout(() => {
+          setErrorMessage("");
+          setModalError(false);
+        }, 3000);
+      });
+  }
+
+  const handleVerifyOTP = (e) => {
+    e.preventDefault();
+    setButtonDisabled(true);
+    if(otp === userOtp) {
+      setButtonDisabled(false);
+      setResetPassword(2);
+    } else {
+      setModalError(true);
+      setErrorMessage("OTP not matched");
+      setTimeout(() => {
+        setErrorMessage("");
+        setModalError(false);
+      }, 3000);
+      setButtonDisabled(false);
+      setResetPassword(0);
+    }
+  }
+
+  const handlePasswordReset = (e) => {
+    e.preventDefault();
+    let type = "";
+    if(isCorp === true)
+      type = "corp";
+    else if(isCorp === false)
+      type = "coll";
+    setButtonDisabled(true);
+    if(newPassword !== confirmNewPassword) {
+      setModalError(true);
+      setErrorMessage("Password not matched");
+      setTimeout(() => {
+        setErrorMessage("");
+        setModalError(false);
+      }, 3000);
+      setButtonDisabled(false);
+      return;
+    }
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/change_password`, {
+        type: type,
+        email: otpEmail,
+        password: newPassword,
+      })
+      .then((res) => {
+        setModalError(true);
+        setErrorMessage(res.data.message);
+        setTimeout(() => {
+          setErrorMessage("");
+          setModalError(false);
+        }, 3000);
+        setButtonDisabled(false);
+        setResetPassword(0);
+      })
+      .catch((err) => {
+        setModalError(true);
+        setErrorMessage(err.response.data.error);
+        setTimeout(() => {
+          setErrorMessage("");
+          setModalError(false);
+        }, 3000);
+        setButtonDisabled(false);
+        setResetPassword(0);
       });
   }
 
@@ -259,12 +384,14 @@ export default function Login() {
                               name="input-text"
                               id="input-text"
                               required
+                              value={otpEmail}
+                              onChange={(e) => setOtpEmail(e.target.value)}
                               placeholder="Enter Email"
                               spellcheck="false"
                             />
                           </Col>
                           <Col className="otp-button">
-                            <Button>
+                            <Button onClick={handleOTPSend} disabled={buttonDisabled}>
                               Send OTP
                             </Button>
                           </Col>
@@ -275,16 +402,18 @@ export default function Login() {
                           <Col className="otp-input" md={8}>
                             <input
                               style={{color:"black", width:"90%", marginTop:"1%"}}
-                              type="email"
+                              type="text"
                               name="input-text"
                               id="input-text"
                               required
+                              value={userOtp}
+                              onChange={(e) => setUserOtp(e.target.value)}
                               placeholder="Enter OTP"
                               spellcheck="false"
                             />
                           </Col>
                           <Col className="otp-button">
-                            <Button>
+                            <Button onClick={handleVerifyOTP} disabled={buttonDisabled}>
                               Verify OTP
                             </Button>
                           </Col>
@@ -295,10 +424,12 @@ export default function Login() {
                           <Col className="otp-input" md={6}>
                             <input
                               style={{color:"black", width:"100%", marginTop:"1%"}}
-                              type="email"
+                              type="password"
                               name="input-text"
                               id="input-text"
                               required
+                              value={newPassword}
+                              onChange={(e) => setNewPassword(e.target.value)}
                               placeholder="Enter Password"
                               spellcheck="false"
                             />
@@ -306,22 +437,27 @@ export default function Login() {
                           <Col className="otp-input">
                             <input
                               style={{color:"black", width:"100%", marginTop:"1%"}}
-                              type="email"
+                              type="password"
                               name="input-text"
                               id="input-text"
                               required
+                              value={confirmNewPassword}
+                              onChange={(e) => setConfirmNewPassword(e.target.value)}
                               placeholder="Confirm Password"
                               spellcheck="false"
                             />
                           </Col>
                         </Row>
                         <Row className="otp-button">
-                          <Button style={{marginLeft: "13vw", width:"30%"}}>
+                          <Button style={{marginLeft: "13vw", width:"30%"}} onClick={handlePasswordReset} disabled={buttonDisabled}>
                             Submit
                           </Button>
                         </Row>
                         </>
                       )}
+                      <div className="error-message">
+                        {modalError && <p>{errorMessage}</p>}
+                      </div>
                       </Modal.Body>
                     </Modal>
                   {/* Previous and next page */}
@@ -403,12 +539,14 @@ export default function Login() {
                               name="input-text"
                               id="input-text"
                               required
+                              value={otpEmail}
+                              onChange={(e) => setOtpEmail(e.target.value)}
                               placeholder="Enter Email"
                               spellcheck="false"
                             />
                           </Col>
                           <Col className="otp-button">
-                            <Button>
+                            <Button onClick={handleOTPSend} disabled={buttonDisabled}>
                               Send OTP
                             </Button>
                           </Col>
@@ -419,16 +557,18 @@ export default function Login() {
                           <Col className="otp-input" md={8}>
                             <input
                               style={{color:"black", width:"90%", marginTop:"1%"}}
-                              type="email"
+                              type="text"
                               name="input-text"
                               id="input-text"
                               required
+                              value={userOtp}
+                              onChange={(e) => setUserOtp(e.target.value)}
                               placeholder="Enter OTP"
                               spellcheck="false"
                             />
                           </Col>
                           <Col className="otp-button">
-                            <Button>
+                            <Button onClick={handleVerifyOTP} disabled={buttonDisabled}>
                               Verify OTP
                             </Button>
                           </Col>
@@ -439,10 +579,12 @@ export default function Login() {
                           <Col className="otp-input" md={6}>
                             <input
                               style={{color:"black", width:"100%", marginTop:"1%"}}
-                              type="email"
+                              type="password"
                               name="input-text"
                               id="input-text"
                               required
+                              value={newPassword}
+                              onChange={(e) => setNewPassword(e.target.value)}
                               placeholder="Enter Password"
                               spellcheck="false"
                             />
@@ -450,22 +592,27 @@ export default function Login() {
                           <Col className="otp-input">
                             <input
                               style={{color:"black", width:"100%", marginTop:"1%"}}
-                              type="email"
+                              type="password"
                               name="input-text"
                               id="input-text"
                               required
+                              value={confirmNewPassword}
+                              onChange={(e) => setConfirmNewPassword(e.target.value)}
                               placeholder="Confirm Password"
                               spellcheck="false"
                             />
                           </Col>
                         </Row>
                         <Row className="otp-button">
-                          <Button style={{marginLeft: "13vw", width:"30%"}}>
+                          <Button style={{marginLeft: "13vw", width:"30%"}} onClick={handlePasswordReset} disabled={buttonDisabled}>
                             Submit
                           </Button>
                         </Row>
                         </>
                       )}
+                      <div className="error-message">
+                        {modalError && <p>{errorMessage}</p>}
+                      </div>
                       </Modal.Body>
                     </Modal>
                   {/* Previous and next page */}
