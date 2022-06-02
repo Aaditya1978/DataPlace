@@ -3,12 +3,13 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 from .serializers import CorpUserSerializer
 from .serializers import ColUserSerializer
 from django.contrib.auth.hashers import make_password
 import jwt
 import os
-from server.helper import send_corp_email, send_coll_email
+from server.helper import send_corp_email, send_coll_email , send_otp_email
 from .models import CorpUser
 from .models import ColUser
 
@@ -160,3 +161,36 @@ class ColUserView(APIView):
         else:
             return Response({'error': 'Invalid Request'}, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET' , 'POST'])
+def SendPasswordResetMail(request):
+    if request.method == 'POST':
+        if request.POST['type'] == 'corp' :
+            class_type = CorpUser
+        elif request.POST['type'] == 'coll' :
+            class_type = ColUser
+
+        email = request.POST['email']
+
+        if class_type.objects.filter(email=email).exists() == False:
+            return Response({'error': "Email doesn't exists"}, status=status.HTTP_400_BAD_REQUEST)
+
+        user = class_type.objects.get(email=email)
+        name = user.name
+        otp = send_otp_email(email , name)
+        return Response({'message': "Email sent" , "otp" : otp} , status=status.HTTP_200_OK)
+
+@api_view(['GET' , 'POST'])
+def ResetPassword(request):
+    if request.method == 'POST':
+        print(request.POST , "This is data")
+        if request.POST['type'] == 'corp':
+            class_type = CorpUser
+        elif request.POST['type'] == 'coll':
+            class_type = ColUser
+
+        email = request.POST['email']
+        user = class_type.objects.get(email=email)
+        new_password = make_password(request.POST['password'])
+        user.password = new_password # Updated password
+        user.save()
+        return Response({'message': "Password changed successfully"} , status=status.HTTP_200_OK)
