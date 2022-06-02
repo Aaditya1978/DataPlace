@@ -11,25 +11,127 @@ import {
   Row,
   Col,
   Form,
+  Modal
 } from "react-bootstrap";
+import axios from "axios";
+import { InfinitySpin } from "react-loader-spinner";
 
 export default function Login() {
   const navigate = useNavigate();
   const [feature, setFeature] = useState(0);
   const [corpEmail, setCorpEmail] = useState("");
   const [corpPassword, setCorpPassword] = useState("");
+  const [corpModal, setCorpModal] = useState(false);
+  const [corpError, setCorpError] = useState(false);
 
   const [colId, setColId] = useState("");
   const [colPassword, setColPassword] = useState("");
+  const [colModal, setColModal] = useState(false);
+  const [colError, setColError] = useState(false);
 
   const [governId, setGovernId] = useState("");
   const [governPassword, setGovernPassword] = useState("");
+  const [govError, setGovError] = useState(false);
+
+  const [isCorp, setIsCorp] = useState(null);
+
+  const [resetPassword, setResetPassword] = useState(0);
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const [onSubmit, setOnSubmit] = useState(false);
 
   const handleSignup = () => {
     navigate("/signup");
   };
+
+  const handleCorpModalShow = () => setCorpModal(true);
+  const handleCorpModalClose = () => setCorpModal(false);
+
+  const handleColModalShow = () => setColModal(true);
+  const handleColModalClose = () => setColModal(false);
+
+  const handleCorpLogin = (e) => {
+    e.preventDefault();
+    setOnSubmit(true);
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/corp_user`, {
+        type: "login",
+        email: corpEmail,
+        password: corpPassword,
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        window.history.replaceState({}, document.title, "/");
+        setOnSubmit(false);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        setCorpError(true);
+        setErrorMessage(err.response.data.message);
+        setOnSubmit(false);
+        setTimeout(() => {
+          setCorpError(false);
+        }, 3000);
+      });
+  }
+
+  const handleColLogin = (e) => {
+    e.preventDefault();
+    setOnSubmit(true);
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/coll_user`, {
+        type: "login",
+        email: colId,
+        password: colPassword,
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        window.history.replaceState({}, document.title, "/");
+        setOnSubmit(false);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        setColError(true);
+        setErrorMessage(err.response.data.message);
+        setOnSubmit(false);
+        setTimeout(() => {
+          setColError(false);
+        }, 3000);
+      });
+  }
+
+  const handleGovLogin = (e) => {
+    e.preventDefault();
+    setOnSubmit(true);
+    axios
+      .post(`${process.env.REACT_APP_BASE_URL}/api/gov_user`, {
+        type: "login",
+        email: governId,
+        password: governPassword,
+      })
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        window.history.replaceState({}, document.title, "/");
+        setOnSubmit(false);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        setGovError(true);
+        setErrorMessage(err.response.data.message);
+        setOnSubmit(false);
+        setTimeout(() => {
+          setGovError(false);
+        }, 3000);
+      });
+  }
+
   return (
     <>
+      { onSubmit ? (
+      <div className="spinner">
+        <InfinitySpin color="#0087ca" />
+      </div> ) : (
       <section className="sign-up-in">
         {/* Background section */}
         <div className="background-theme">{/* Background image */}</div>
@@ -47,6 +149,7 @@ export default function Login() {
             <span className="logo-name">DataPlace</span>
             <span className="login-text">
               New User?
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
               <a
                 className="login-btn hover-underline-animation"
                 onClick={handleSignup}
@@ -101,7 +204,7 @@ export default function Login() {
 
               {/* Information for corporate */}
               {feature === 0 && (
-                <Form className="my-form-1" onSubmit={() => setFeature(3)}>
+                <Form className="my-form-1" onSubmit={handleCorpLogin}>
                   <Row style={{ marginBottom: "10vh" }}>
                     <Col>
                       <div className="input-block login-input-wrapper">
@@ -118,7 +221,7 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
-                  <Row style={{ marginBottom: "25vh" }}>
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block login-input-wrapper">
                         <input
@@ -134,7 +237,97 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
+                  <Row className="login-forgot-password" style={{ marginBottom: "12vh" }} onClick={handleCorpModalShow}>
+                    <p>Forgot Password?</p>
+                  </Row>
+                  {/* Modal for forgot password and otp section */}
+                  <Modal
+                      style={{ background: "none" }}
+                      show={corpModal}
+                      onHide={handleCorpModalClose}
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>Reset Password</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body style={{ color: "black" }}>
+                      {(resetPassword === 0) && (
+                        <Row style={{marginBottom: "1vh"}}>
+                          <Col className="otp-input" md={8}>
+                            <input
+                              style={{color:"black", width:"90%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Enter Email"
+                              spellcheck="false"
+                            />
+                          </Col>
+                          <Col className="otp-button">
+                            <Button>
+                              Send OTP
+                            </Button>
+                          </Col>
+                        </Row>
+                      )}
+                      {(resetPassword === 1) && (
+                        <Row style={{marginBottom: "1vh"}}>
+                          <Col className="otp-input" md={8}>
+                            <input
+                              style={{color:"black", width:"90%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Enter OTP"
+                              spellcheck="false"
+                            />
+                          </Col>
+                          <Col className="otp-button">
+                            <Button>
+                              Verify OTP
+                            </Button>
+                          </Col>
+                        </Row>
+                      )}
+                      {(resetPassword === 2) && (<>
+                        <Row style={{marginBottom: "1vh"}}>
+                          <Col className="otp-input" md={6}>
+                            <input
+                              style={{color:"black", width:"100%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Enter Password"
+                              spellcheck="false"
+                            />
+                          </Col>
+                          <Col className="otp-input">
+                            <input
+                              style={{color:"black", width:"100%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Confirm Password"
+                              spellcheck="false"
+                            />
+                          </Col>
+                        </Row>
+                        <Row className="otp-button">
+                          <Button style={{marginLeft: "13vw", width:"30%"}}>
+                            Submit
+                          </Button>
+                        </Row>
+                        </>
+                      )}
+                      </Modal.Body>
+                    </Modal>
                   {/* Previous and next page */}
+                  <div className="error-message">
+                    {corpError && <p>{errorMessage}</p>}
+                  </div>
                   <Row>
                     <Col>
                       <Button
@@ -155,7 +348,7 @@ export default function Login() {
 
               {/* information for college */}
               {feature === 1 && (
-                <Form className="my-form-1" onSubmit={() => setFeature(2)}>
+                <Form className="my-form-1" onSubmit={handleColLogin}>
                   <Row style={{ marginBottom: "10vh" }}>
                     <Col>
                       <div className="input-block login-input-wrapper">
@@ -172,7 +365,7 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
-                  <Row style={{ marginBottom: "25vh" }}>
+                  <Row style={{ marginBottom: "7vh" }}>
                     <Col>
                       <div className="input-block login-input-wrapper">
                         <input
@@ -188,7 +381,97 @@ export default function Login() {
                       </div>
                     </Col>
                   </Row>
+                  <Row className="login-forgot-password" style={{ marginBottom: "12vh" }} onClick={handleColModalShow}>
+                    <p>Forgot Password?</p>
+                  </Row>
+                  {/* Modal for forgot password and otp section */}
+                  <Modal
+                      style={{ background: "none" }}
+                      show={colModal}
+                      onHide={handleColModalClose}
+                    >
+                      <Modal.Header closeButton>
+                        <Modal.Title>Reset Password</Modal.Title>
+                      </Modal.Header>
+                      <Modal.Body style={{ color: "black" }}>
+                      {(resetPassword === 0) && (
+                        <Row style={{marginBottom: "1vh"}}>
+                          <Col className="otp-input" md={8}>
+                            <input
+                              style={{color:"black", width:"90%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Enter Email"
+                              spellcheck="false"
+                            />
+                          </Col>
+                          <Col className="otp-button">
+                            <Button>
+                              Send OTP
+                            </Button>
+                          </Col>
+                        </Row>
+                      )}
+                      {(resetPassword === 1) && (
+                        <Row style={{marginBottom: "1vh"}}>
+                          <Col className="otp-input" md={8}>
+                            <input
+                              style={{color:"black", width:"90%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Enter OTP"
+                              spellcheck="false"
+                            />
+                          </Col>
+                          <Col className="otp-button">
+                            <Button>
+                              Verify OTP
+                            </Button>
+                          </Col>
+                        </Row>
+                      )}
+                      {(resetPassword === 2) && (<>
+                        <Row style={{marginBottom: "1vh"}}>
+                          <Col className="otp-input" md={6}>
+                            <input
+                              style={{color:"black", width:"100%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Enter Password"
+                              spellcheck="false"
+                            />
+                          </Col>
+                          <Col className="otp-input">
+                            <input
+                              style={{color:"black", width:"100%", marginTop:"1%"}}
+                              type="email"
+                              name="input-text"
+                              id="input-text"
+                              required
+                              placeholder="Confirm Password"
+                              spellcheck="false"
+                            />
+                          </Col>
+                        </Row>
+                        <Row className="otp-button">
+                          <Button style={{marginLeft: "13vw", width:"30%"}}>
+                            Submit
+                          </Button>
+                        </Row>
+                        </>
+                      )}
+                      </Modal.Body>
+                    </Modal>
                   {/* Previous and next page */}
+                  <div className="error-message">
+                    {colError && <p>{errorMessage}</p>}
+                  </div>
                   <Row>
                     <Col>
                       <Button
@@ -209,7 +492,7 @@ export default function Login() {
 
               {/* Information for government */}
               {feature === 4 && (
-                <Form className="my-form-1">
+                <Form className="my-form-1" onSubmit={handleGovLogin}>
                   <Row style={{ marginBottom: "10vh" }}>
                     <Col>
                       <div className="input-block login-input-wrapper">
@@ -243,6 +526,9 @@ export default function Login() {
                     </Col>
                   </Row>
                   {/* Previous and next page */}
+                  <div className="error-message">
+                    {govError && <p>{errorMessage}</p>}
+                  </div>
                   <Row>
                     <Col>
                       <Button
@@ -265,7 +551,7 @@ export default function Login() {
         </div>
 
         {/* Front image to be displayed on card */}
-        <div className="front-img">
+        <div className="front-img animate__animated animate__bounceIn">
           <img src={front_img2} alt="front_img_2" />
           <img src={front_img} alt="front_img" />
         </div>
@@ -273,6 +559,7 @@ export default function Login() {
           <span className="line"></span>
         </div>
       </section>
+      )}
     </>
   );
 }
