@@ -22,9 +22,66 @@
     transform: scale(1.05);
 }
 
+.login-forgot-password {
+    position: relative;
+}
+
+.login-forgot-password p{
+    position: absolute;
+    left: 12%;
+    color: #6a8dd9;
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5vh;
+    width: 10.5vw;
+    padding: 0 0;
+}
+
+.login-forgot-password:hover p{
+    border-bottom: 2px solid #6a8dd9;
+    cursor: pointer;
+}
+
 .sign-up-in .main-card .credentials .credentials-form .user-selection button:focus {
     outline: none;
     box-shadow: none;
+}
+
+/* Otp input section */
+.otp-input input {
+    border-radius: 0px;
+    border: none;
+    border-bottom: 2px solid black;
+    /* border: 2px solid black; */
+
+}
+
+.otp-input input:focus, 
+.otp-input input:hover{
+    outline: none;
+    box-shadow: none;
+}
+
+.otp-input input:focus{
+    border-bottom: 2px solid #6a8dd9;
+}
+
+/* Otp button section */
+.otp-button button {
+    font-family: "Inter", sans-serif;
+    border-radius: 1vh;
+    background-color: #6a8dd9;
+    border: none;
+}
+
+.otp-button button:hover{
+    background-color: #3471f3;
+}
+
+.error-message{
+    color: red;
+    font-size: 2.5vh;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 950px) {
