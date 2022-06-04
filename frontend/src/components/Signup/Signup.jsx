@@ -20,7 +20,7 @@ export default function Signup() {
   const [corpContact, setCorpContact] = useState("");
   const [corpEmail, setCorpEmail] = useState("");
   const [corpAddress, setCorpAddress] = useState("");
-  const [corpDist, setCorpDist] = useState("");
+  const [corpDist, setCorpDist] = useState("--Choose District--");
   const [corpState, setCorpState] = useState("--Choose State--");
   const [corpPin, setCorpPin] = useState("");
   const [corpPassword, setCorpPassword] = useState("");
@@ -33,7 +33,7 @@ export default function Signup() {
   const [colContact, setColContact] = useState("");
   const [colEmail, setColEmail] = useState("");
   const [colAddress, setColAddress] = useState("");
-  const [colDist, setColDist] = useState("");
+  const [colDist, setColDist] = useState("--Choose District--");
   const [colState, setColState] = useState("--Choose State--");
   const [colPin, setColPin] = useState("");
   const [colPassword, setColPassword] = useState("");
