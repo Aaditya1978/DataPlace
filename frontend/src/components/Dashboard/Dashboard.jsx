@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Accordion } from "react-bootstrap";
 import axios from "axios";
+import Sidebar from "../Sidebar/Sidebar";
+import TableauReport from "tableau-react";
 import "./Dashboard.css";
 
 export default function Dashboard() {
@@ -10,6 +12,12 @@ export default function Dashboard() {
   const [verified, setVerified] = useState(false);
   const [verificationStatus, setVerificationStatus] = useState("");
   const [userType, setUserType] = useState("");
+
+  const options = {
+    height: "35rem",
+    width: "100%",
+    hideTabs: false,
+  };
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -68,7 +76,13 @@ export default function Dashboard() {
         </div>
       ) : (
         <div className="dashboard-main">
-          Hello {userType}
+          <Sidebar active="dashboard" />
+          <div className="main-content">
+            <TableauReport
+                  url="https://public.tableau.com/views/JMITPlacements/Dashboard1"
+                  options={options}
+                />
+          </div>
         </div>
       )}
     </>
