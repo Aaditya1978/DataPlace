@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.adminmanagestate {
+    font-family: 'Inter', sans-serif;
+
+    .no-data{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .no-data-img{
+            width: 500px;
+        }
+
+        .no-data-text{
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #5b83da;
+        }
+    }
+
+    .ams-main{
+        .ams-head{
+            margin-top: 5px;
+            margin-bottom: 20px;
+
+            .ams-head-text{
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #5b83da;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Inter', sans-serif;
+
+                .ams-head-text-sub{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    color: #000;
+                }
+            }
+
+            .ams-head-img{
+                width: 500px;
+            }
+        }
+
+        .ams-body{
+            margin-top: 10px;
+            margin-bottom: 20px;
+
+            .table{
+                border-color: #3b3b3b;
+
+                thead{
+                    color: #5b83da;
+                }
+
+                .m-delete-icon{
+                    color: #da5b5b;
+                    font-size: 22px;
+                    cursor: pointer;
+                    transition: 0.3s;
+
+                    &:hover{
+                        color: #dd3d3d;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            .ams-body-btn{
+                border-radius: 7px;
+                border-color: #5b83da;
+                color: #5b83da;
+                font-family: 'Inter', sans-serif;
+                font-size: 1rem;
+                font-weight: 600;
+                width: 250px;
+                margin-bottom: 10px;
+
+                &:hover{
+                    background-color: #5b83da;
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

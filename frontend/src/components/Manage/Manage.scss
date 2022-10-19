@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.manage {
+    font-family: 'Inter', sans-serif;
+
+    .m-header{
+
+        .m-head-img{
+            width: 100%;
+        }
+
+        .m-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .m-body{
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .m-title{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            color: #5b83da;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .m-subtitle{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .m-down-row{
+            margin-top: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .m-down-btn{
+                width: 250px;
+                border-radius: 8px;
+                border-color: #5b83da;
+                color: #5b83da;
+                font-family: 'Inter', sans-serif;
+                font-size: 1.1rem;
+                font-weight: 600;
+                cursor: pointer;
+
+                &:hover{
+                    background-color: #5b83da;
+                    color: white;
+                }
+            }
+        }
+
+        .m-placement{
+            margin-top: 10px;
+            margin-bottom: 10px;
+
+            .m-table{
+                margin-top: 10px;
+                margin-bottom: 10px;
+
+                .m-table-selects{
+                    margin-bottom: 20px;
+
+                    .form-label{
+                        font-family: 'Inter', sans-serif;
+                        font-size: 1.05rem;
+                        font-weight: 600;
+                    }
+
+                    .form-select{
+                        font-family: 'Inter', sans-serif;
+                        font-size: 1rem;
+                        font-weight: 500;
+                        width: 80%;
+                        border-radius: 7px;
+                        border: 1px solid #5b83da;
+                    }
+                }
+
+                .table{
+                    border-color: #3b3b3b;
+
+                    thead{
+                        color: #5b83da;
+                    }
+
+                    .m-delete-icon{
+                        color: #da5b5b;
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover{
+                            color: #dd3d3d;
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

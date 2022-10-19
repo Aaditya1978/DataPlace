@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-bar {
+    font-family: 'Inter', sans-serif;
+
+    .nav-logo {
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+    }
+
+    .d-nav{
+        width: 50%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .d-nav-link{
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #000;
+            text-decoration: none;
+
+            &:hover{
+                color: #000;
+                text-decoration: none;
+                border-bottom: 3px solid #6a8dd9;
+            }
+        }
+
+        .active{
+            border-bottom: 3px solid #6a8dd9;
+            font-weight: 600;
+        }
+    }
+
+    .n-side-sec{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        border: 2px solid #5b83da;
+        border-radius: 6px;
+
+        .n-user-icon{
+            font-size: 20px;
+            color: #5b83da;
+            margin-right: 10px;
+        }
+
+        span{
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        &:hover{
+            cursor: pointer;
+            background-color: #6f8fd4;
+
+            .n-user-icon{
+                color: #fff;
+            }
+        }
+    }
+
+    .n-side-sec-2{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        border: 2px solid #5b83da;
+        border-radius: 6px;
+        margin-left: 20px;
+
+        .n-log-icon{
+            font-size: 22px;
+            color: #5b83da;
+            margin-right: 10px;
+        }
+
+        span{
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        &:hover{
+            cursor: pointer;
+            background-color: #6f8fd4;
+
+            .n-log-icon{
+                color: #000;
+            }
+        }
+    }
+}

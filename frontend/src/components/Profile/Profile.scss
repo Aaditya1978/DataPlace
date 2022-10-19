@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.profile {
+    font-family: 'Inter', sans-serif;
+
+    .p-header{
+
+        .p-head-img{
+            width: 100%;
+        }
+
+        .p-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .p-body{
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .p-body-head{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #5b83da;
+            margin-bottom: 10px;
+        }
+
+        .p-details{
+            margin-top: 5px;
+
+            .p-details-head{
+                font-family: 'Inter', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #5b83da;
+            }
+
+            .p-details-box{
+                display: flex;
+                align-items: center;
+
+                .p-details-input{
+                    min-width: 200px;
+                    width: fit-content;
+                    border: 1px solid #5b83da;
+                    border-radius: 7px;
+                    padding: 5px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: #000;
+                }
+
+                .p-details-text{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 400;
+                    border: 1px solid #5b83da;
+                    border-radius: 7px;
+                    min-width: 200px;
+                    width: fit-content;
+                    padding: 5px;
+                }
+
+                .p-details-btn{
+                    margin-left: 10px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    border: 1px solid #5b83da;
+                    border-radius: 7px;
+                    width: 80px;
+                    background-color: #5b83da;
+                    color: white;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+
+                    &:hover{
+                        transform: scaleX(1.1)
+                    }
+                }
+            }
+        }
+    }
+}

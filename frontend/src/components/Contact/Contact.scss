@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.c-modal{
+    .modal-title{
+        color: #5b83da;
+    }
+
+    .c-form{
+        .form-group{
+            margin-bottom: 1rem;
+        }
+
+        .form-label{
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #5b83da;
+        }
+
+        .form-control{
+            width: 90%;
+            border: 1px solid #5b83da;
+            border-radius: 7px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .c-form-button{
+            width: 170px;
+            border-color: #5b83da;
+            border-radius: 7px;
+            font-size: 1.2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #5b83da;
+            margin-top: 2rem;
+
+            &:hover{
+                background-color: #5b83da;
+                color: white;
+            }
+        }
+    }
+
+    .modal-footer{
+        button{
+            border-radius: 7px;
+            border-color: #5b83da;
+            color: #5b83da;
+
+            &:hover{
+                background-color: #5b83da;
+                color: white;
+            }
+        }
+    }
+}
+
+.contact {
+    font-family: 'Inter', sans-serif;
+
+    .c-header{
+
+        .c-head-img{
+            width: 100%;
+        }
+
+        .c-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .c-body{
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .c-btn-row{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .c-btn{
+                width: 160px;
+                border-radius: 7px;
+                font-family: 'Inter', sans-serif;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #5b83da;
+                border-color: #5b83da;
+                margin-right: 10px;
+
+                &:hover{
+                    background-color: #5b83da;
+                    color: white;
+                }
+            }
+        }
+
+        .c-query{
+            margin-top: 20px;
+
+            .c-query-head{
+                font-family: 'Inter', sans-serif;
+                font-size: 2rem;
+                font-weight: 600;
+                color: #5b83da;
+                text-align: center;
+                text-decoration: underline;
+            }
+
+            .c-query-body{
+                margin-top: 10px;
+
+                .c-query-empty{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: #5b83da;
+                    text-align: center;
+                }
+
+                .table{
+                    border-color: #3b3b3b;
+
+                    thead{
+                        color: #5b83da;
+                    }
+
+                    .m-delete-icon{
+                        color: #da5b5b;
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover{
+                            color: #dd3d3d;
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
