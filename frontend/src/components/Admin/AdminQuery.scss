@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.aq-modal{
+    .modal-title{
+        color: #5b83da;
+    }
+
+    .aq-form{
+        .form-group{
+            margin-bottom: 1rem;
+        }
+
+        .form-label{
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #5b83da;
+        }
+
+        .form-control{
+            width: 90%;
+            border: 1px solid #5b83da;
+            border-radius: 7px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .aq-form-button{
+            width: 170px;
+            border-color: #5b83da;
+            border-radius: 7px;
+            font-size: 1.2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: #5b83da;
+            margin-top: 2rem;
+
+            &:hover{
+                background-color: #5b83da;
+                color: white;
+            }
+        }
+    }
+
+    .modal-footer{
+        button{
+            border-radius: 7px;
+            border-color: #5b83da;
+            color: #5b83da;
+
+            &:hover{
+                background-color: #5b83da;
+                color: white;
+            }
+        }
+    }
+}
+
+.adminquery {
+    font-family: 'Inter', sans-serif;
+
+    .aq-header{
+
+        .aq-head-img{
+            width: 100%;
+        }
+
+        .aq-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .aq-body{
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .aq-body-text{
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #5b83da;
+        }
+
+        .aq-btn-row{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .aq-btn{
+                width: 160px;
+                border-radius: 7px;
+                font-family: 'Inter', sans-serif;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #5b83da;
+                border-color: #5b83da;
+
+                &:hover{
+                    background-color: #5b83da;
+                    color: white;
+                }
+            }
+        }
+
+        .aq-body-table{
+            margin-top: 5px;
+            margin-bottom: 20px;
+
+            .table{
+                border-color: #3b3b3b;
+
+                thead{
+                    color: #5b83da;
+                }
+
+                .aq-reply-btn{
+                    background-color: #5b83da;
+                    color: white;
+                    border: none;
+                    border-radius: 7px;
+                    padding: 5px 10px;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+
+                    &:hover{
+                        transform: scale(1.06);
+                    }
+                }
+            }
+        }
+    }
+}

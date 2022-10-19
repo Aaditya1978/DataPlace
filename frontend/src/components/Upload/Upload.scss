@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.upload {
+    font-family: 'Inter', sans-serif;
+
+    .u-header{
+
+        .u-head-img{
+            width: 100%;
+        }
+
+        .u-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .u-body{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
+        .head{
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .u-form{
+            .form-label{
+                font-family: 'Inter', sans-serif;
+                font-weight: 700;
+            }
+
+            select, input{
+                font-family: 'Inter', sans-serif;
+                border-radius: 7px;
+            }
+
+            .u-del-ico{
+                font-size: 2rem;
+                color: #f74242;
+                cursor: pointer;
+                transition: 0.3s;
+
+                &:hover{
+                    transform: scale(1.15);
+                }
+            }
+
+            .u-sub{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 50px;
+
+                .u-sub-b{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.3rem;
+                    font-weight: 550;
+                    border-radius: 7px;
+                    width: 220px;
+                    background-color: #5b83da;
+                    transition: 0.4s;
+
+                    &:hover{
+                        transform: scaleX(1.15);
+                    }
+                }
+            }
+        }
+    }
+}

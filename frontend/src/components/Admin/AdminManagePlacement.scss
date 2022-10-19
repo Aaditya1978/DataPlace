@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.adminmanageplacement {
+    font-family: 'Inter', sans-serif;
+
+    .amp-main{
+        .amp-head{
+            margin-top: 5px;
+            margin-bottom: 20px;
+
+            .amp-head-text{
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #5b83da;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                font-family: 'Inter', sans-serif;
+
+                .amp-head-text-sub{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    color: #000;
+                }
+            }
+
+            .amp-head-img{
+                width: 500px;
+            }
+        }
+
+        .amp-body{
+            margin-top: 10px;
+            margin-bottom: 20px;
+
+            .amp-table{
+                margin-top: 10px;
+                margin-bottom: 10px;
+
+                .amp-table-selects{
+                    margin-bottom: 20px;
+
+                    .form-label{
+                        font-family: 'Inter', sans-serif;
+                        font-size: 1.05rem;
+                        font-weight: 600;
+                    }
+
+                    .form-select{
+                        font-family: 'Inter', sans-serif;
+                        font-size: 1rem;
+                        font-weight: 500;
+                        width: 80%;
+                        border-radius: 7px;
+                        border: 1px solid #5b83da;
+                    }
+                }
+
+                .table{
+                    border-color: #3b3b3b;
+
+                    thead{
+                        color: #5b83da;
+                    }
+                }
+            }
+        }
+    }
+}

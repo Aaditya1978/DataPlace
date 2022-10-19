@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.adminlogin {
+    height: 100vh;
+    width: 100%;
+
+    .adminlogin-left{
+        height: 100vh;
+        display: flex;
+        align-items: center;
+
+        .al-card{
+            font-family: 'Inter', sans-serif;
+            height: 500px;
+            width: 70%;
+            border-color: #5b83da;
+            border-radius: 7px;
+
+            .al-card-head{
+                font-family: 'Inter', sans-serif;
+                font-size: 2rem;
+                font-weight: 600;
+                color: #5b83da;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            form{
+                font-family: 'Inter', sans-serif;
+
+                .form-label{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    color: #5b83da;
+                }
+
+                input{
+                    font-family: 'Inter', sans-serif;
+                    width: 500px;
+                    height: 40px;
+                    border: 1px solid #5b83da;
+                    border-radius: 7px;
+                    margin-bottom: 20px;
+                    padding-left: 10px;
+                }
+
+                .al-b-row{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .al-submit-button{
+                        margin-top: 30px;
+                        font-family: 'Inter', sans-serif;
+                        width: 40%;
+                        border: 1px solid #5b83da;
+                        border-radius: 7px;
+                        background-color: #5b83da;
+                        color: white;
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: all 0.3s;
+
+                        &:hover{
+                            background-color: #4a6faa;
+                            transform: scale(1.06);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .adminlogin-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .al-img{
+            width: 500px;
+        }
+    }
+}

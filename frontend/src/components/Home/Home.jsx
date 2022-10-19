@@ -44,7 +44,7 @@ export default function Home() {
   useEffect(() => {
     setTimeout(() => {
       setShowLoader(false);
-    }, 10000);
+    }, 2000);
   }, []);
 
   const handleSignup = () => {
