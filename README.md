@@ -1,6 +1,5 @@
-# Branch - aaditya-branch
 # DataPlace
-Repo of JM_Pro_Coders for SIH 2022
+Platform for managing Placement Records
 
 # Setps to Run Code
 
@@ -14,20 +13,16 @@ Repo of JM_Pro_Coders for SIH 2022
 #### To install any module run command ` npm install <module-name> `
 
 ## For Backend
-` pip install pipenv ` ( Run in root dir. and only for once if not done )
-
-` pipenv shell ` ( To activate virtualenv if not activated )
-
-` pipenv install ` ( To install all required packages )
-
 ` cd backend `
- 
-` python manage.py runserver `
- 
-#### To install any new Packcage , run command ` pipenv install <package-name> `
+
+` npm i ` ( Required only if some new modules are installed )
+
+` npm start `
+
+#### To install any module run command ` npm install <module-name> `
  
 
-## Problem Statement (DR719)
+## Problem Statement
 Inter-linked platform for Campus Placement in Higher educational Institutions of India
 
 ## Problem Statement Description
