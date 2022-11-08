@@ -13,10 +13,7 @@ const PORT = process.env.PORT || 5000;
 // create express app
 const app = express();
 app.use(express.json());
-const corsOptions ={
-    origin:'https://dataplace.netlify.app', 
-}
-app.use(cors(corsOptions));
+app.use(cors());
 
 // connect to db
 db.sequelize.sync()
