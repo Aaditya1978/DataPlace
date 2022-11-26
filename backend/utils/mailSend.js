@@ -19,7 +19,7 @@ async function send_register_mail(email, name) {
     {
       from: process.env.EMAIL,
       to: email,
-      subject: "OTP to Reset Password for DataPlace",
+      subject: "Thank you for registering with DataPlace",
       html: `
             <table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8" style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: 'Open Sans', sans-serif;">
                 <tr>
