@@ -1,9 +1,9 @@
 module.exports = {
-    HOST: "localhost",
-    USER: "dataplace",
-    PASSWORD: "12345",
+    HOST: process.env.DB_HOST,
+    USER: process.env.DB_USER,
+    PASSWORD: process.env.DB_PASSWORD,
     DB: "dataplace",
-    dialect: "mysql",
+    dialect: "postgres",
     pool: {
       max: 5,
       min: 0,
