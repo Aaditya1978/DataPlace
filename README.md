@@ -1,29 +1,58 @@
 # DataPlace
-Platform for managing Placement Records
+An interlinked platform for managing and accessing placements records with various analytics and live tracking of data.
+
+# Tech Stack
+- ### Frontend - React, SCSS, Bootstrap
+- ### Backend - Node.js, Express
+- ### Database - PostgreSQL
+
+### The frontend is hosted on Netlify and Backend on Render.
+
+## Hosted Site Link - https://dataplace.netlify.app
 
 # Setps to Run Code
 
 ## For Frontend
-` cd frontend `
 
-` npm i ` ( Required only if some new modules are installed )
+- First in your frontend, create .env.local file and add following variables
 
-` npm start `
+  `REACT_APP_BASE_URL`
 
-#### To install any module run command ` npm install <module-name> `
+- ` cd frontend `
+
+- ` npm i ` ( Required only if some new modules are installed )
+
+- ` npm start `
+
 
 ## For Backend
-` cd backend `
 
-` npm i ` ( Required only if some new modules are installed )
+- First in your server, create .env file and add following variables
 
-` npm start `
+  `EMAIL` `PASSWORD` `DB_HOST` `DB_USER` `DB_PASSWORD`
 
-#### To install any module run command ` npm install <module-name> `
- 
+- ` cd backend `
 
-## Problem Statement
-Inter-linked platform for Campus Placement in Higher educational Institutions of India
+- ` npm i ` ( Required only if some new modules are installed )
 
-## Problem Statement Description
-Background: As on today, in our country we are not having any master data base regarding campus placement in technical institute and Universities throughout the country. By mapping the entire placement details throughout the county, the percentage of un-employability can be identified in various fields of education. This will help the policy makers to come out with appropriate solution through framing of policies for tackling the unemployability in the country. Provision of common platform in which the entire data base of campus placement of all technical institutes/ Universities throughout the country by interlinking it will be extremely useful for the following: 1. Government/Policy makers to come out with appropriate solutions. 2. Corporates to have access to the students through a central database Summary: An integrated platform should be developed where in all the universities/Colleges can share the resources for campus placement and the corporates can also access this database for recruiting students for the available vacancies. Objective: : To develop an inter-linked platform for Campus Placement in Higher educational Institutions of India
+- ` npm start `
+
+
+## Features
+
+- Detailed view of data
+- Easily store records
+- Download previous uploaded data in CSV format
+- Admin dashboard for managing colleges and all records
+
+
+## Contributing
+
+Contributions are always welcome!
+
+
+## Feedback
+
+If you like the project please ⭐ the repo.
+
+If you have any feedback, please reach out to us.
