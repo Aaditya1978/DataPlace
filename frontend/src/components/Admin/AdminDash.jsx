@@ -4,6 +4,7 @@ import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import AdminNav from "./AdminNav";
 import "./AdminDash.scss";
+import TableauReport from "tableau-react";
 
 export default function AdminDash() {
   const navigate = useNavigate();
@@ -12,6 +13,12 @@ export default function AdminDash() {
     name: "",
     email: "",
   });
+
+  const options = {
+    height: "65rem",
+    width: "100%",
+    hideTabs: false,
+  };
 
   useEffect(() => {
     if (localStorage.getItem("admin_token") === null) {
@@ -38,10 +45,17 @@ export default function AdminDash() {
       {/* Admin NavBar */}
       <AdminNav />
 
-      <Container>
+      <Container className="dash-u">
         Hello {admin.name}
-        hello
       </Container>
+
+      <div className="tableau-u">
+        <TableauReport
+          url="https://public.tableau.com/views/DataPlace1/HomeDashboard"
+          options={options}
+        />
+      </div>
+
     </div>
   );
 }
