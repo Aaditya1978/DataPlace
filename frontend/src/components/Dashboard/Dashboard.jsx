@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import "./Dashboard.scss";
+import TableauReport from "tableau-react";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -16,6 +17,12 @@ export default function Dashboard() {
     state: "",
     pincode: "",
   });
+
+  const options = {
+    height: "65rem",
+    width: "100%",
+    hideTabs: false,
+  };
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -39,14 +46,17 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-
       {/* Navbar */}
       <NavBar />
 
-      <div className="dash">
-        {college.name}
-      </div>
+      <div className="dash">{college.name}</div>
 
+      <div className="tableau-t">
+        <TableauReport
+          url="https://public.tableau.com/views/DataPlace1/HomeDashboard"
+          options={options}
+        />
+      </div>
     </div>
   );
 }

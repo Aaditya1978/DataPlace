@@ -7,4 +7,19 @@ body {
 
 .dashboard {
     font-family: 'Inter', sans-serif;
+
+    .dash{
+        text-align: center;
+        margin-top: 5vh;
+        margin-bottom: 5vh;
+        font-size: 2.5rem;
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .tableau-t{
+        margin-top: 2vh;
+        margin-bottom: 10vh;
+    }
 }
