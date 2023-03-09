@@ -22,9 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     pnr_students: DataTypes.INTEGER,
     placed_students: DataTypes.INTEGER,
     offer_letters: DataTypes.INTEGER,
-    lowest_package: DataTypes.INTEGER,
-    highest_package: DataTypes.INTEGER,
-    average_package: DataTypes.INTEGER,
+    lowest_package: DataTypes.DOUBLE,
+    highest_package: DataTypes.DOUBLE,
+    average_package: DataTypes.DOUBLE,
     number_of_companies: DataTypes.INTEGER
   }, {
     sequelize,
