@@ -41,6 +41,28 @@ body {
         }
 
         .u-form{
+
+            .table{
+                border-color: #3b3b3b;
+                width: 140%;
+
+                thead{
+                    color: #5b83da;
+                }
+
+                .m-delete-icon{
+                    color: #da5b5b;
+                    font-size: 22px;
+                    cursor: pointer;
+                    transition: 0.3s;
+
+                    &:hover{
+                        color: #dd3d3d;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
             .form-label{
                 font-family: 'Inter', sans-serif;
                 font-weight: 700;

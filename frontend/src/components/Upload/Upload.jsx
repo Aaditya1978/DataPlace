@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Container, Row, Col, Table, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import { FaPlus } from "react-icons/fa";
 import { AiTwotoneDelete } from "react-icons/ai";
@@ -31,7 +31,7 @@ export default function Upload() {
       eligible_students: "",
       pnr: "",
       placed: "",
-      offer_letter: "",
+      offer_letters: "",
       lowest_package: "",
       highest_package: "",
       average_package: "",
@@ -66,6 +66,20 @@ export default function Upload() {
       });
   };
 
+	const handleOnChange = (e, index) => {
+		const { name, value } = e.target;
+		const list = [...placementData];
+		list[index][name] = value;
+		setPlacementData(list);
+	};
+
+  const checkValidity = (value) => {
+    if(value === "") return true;
+    let val = parseInt(value);
+    if(val < 0) return true;
+    return false;
+  }
+
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
       navigate("/signup");
@@ -84,7 +98,7 @@ export default function Upload() {
         localStorage.removeItem("token");
         navigate("/login");
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="upload">
@@ -116,7 +130,207 @@ export default function Upload() {
       <Container className="u-body">
         <div className="head">Upload Placements Records</div>
         <div className="u-form">
-          <Form noValidate validated={validated} onSubmit={handleSubmit} method="POST">
+        <Form noValidate validated={validated} onSubmit={handleSubmit} method="POST">
+					<Table striped bordered hover responsive>
+            <thead>
+                <tr>
+                  <th style={{width:"130px"}}>#</th>
+                  <th style={{width:"180px"}}>Year</th>
+                  <th style={{width:"180px"}}>Branch</th>
+                  <th style={{width:"130px"}}>No. of Students</th>
+                  <th style={{width:"130px"}}>No. of Eligible Students</th>
+                  <th style={{width:"130px"}}>No. of Students with PNR</th>
+                  <th style={{width:"130px"}}>No. of Placed Students</th>
+                  <th style={{width:"130px"}}>No. of Offer Letters</th>
+                  <th style={{width:"130px"}}>Lowest Package (In LPA)</th>
+                  <th style={{width:"130px"}}>Highest Package (In LPA)</th>
+                  <th style={{width:"130px"}}>Average Package (In LPA)</th>
+                  <th style={{width:"130px"}}>No. of Companies</th>
+                  <th style={{width:"130px"}}>Action</th>
+                </tr>
+              </thead>
+							<tbody>
+								{placementData.map((data, index) => (
+									<tr key={index}>
+										<td>{index + 1}</td>
+										<td>
+											<Form.Select
+												required
+												name="year"
+												value={data.year}
+												onChange={(e) => handleOnChange(e, index)}
+												isInvalid={data.year === ""}
+											>
+												<option value="">Select</option>
+                        {/* start from 2000 till current year */}
+                        { [...Array(new Date().getFullYear() - 2000 + 1).keys()].map((year) => (
+                          <option value={2000 + year}>{2000 + year}</option>
+                        ))}
+											</Form.Select>
+										</td>
+                    <td>
+                      <Form.Select
+                        required
+                        name="branch"
+                        value={data.branch}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={data.branch === ""}
+                      >
+                        <option value="">Select</option>
+                        <option value="CSE">CSE</option>
+                        <option value="IT">IT</option>
+                        <option value="ME">ME</option>
+                        <option value="ECE">ECE</option>
+                        <option value="EEE">EEE</option>
+                        <option value="CIVIL">CIVIL</option>
+                        <option value="BCA">BCA</option>
+                        <option value="BBA">BBA</option>
+                        <option value="MBA">MBA</option>
+                        <option value="MCA">MCA</option>
+                      </Form.Select>
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="students"
+                        value={data.students}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.students)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="eligible_students"
+                        value={data.eligible_students}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.eligible_students)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="pnr"
+                        value={data.pnr}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.pnr)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="placed"
+                        value={data.placed}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.placed)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="offer_letters"
+                        value={data.offer_letters}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.offer_letters)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="lowest_package"
+                        value={data.lowest_package}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.lowest_package)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="highest_package"
+                        value={data.highest_package}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.highest_package)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="average_package"
+                        value={data.average_package}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.average_package)}
+                      />
+                    </td>
+                    <td>
+                      <Form.Control
+                        required
+                        type="number"
+                        name="companies_visited"
+                        value={data.companies_visited}
+                        onChange={(e) => handleOnChange(e, index)}
+                        isInvalid={checkValidity(data.companies_visited)}
+                      />
+                    </td>
+                    <td>
+                    <AiTwotoneDelete
+                      className="u-del-ico"
+                      onClick={() => {
+                        const list = [...placementData];
+                        list.splice(index, 1);
+                        setPlacementData(list);
+                      }}
+                    />
+                    </td>
+									</tr>
+								))}
+							</tbody>
+						</Table>
+            <br />
+            <Button
+                  variant="outline-success"
+                  onClick={() => {
+                    setPlacementData([
+                      ...placementData,
+                      {
+                        year: "",
+                        branch: "",
+                        students: "",
+                        eligible_students: "",
+                        pnr: "",
+                        placed: "",
+                        offer_letters: "",
+                        lowest_package: "",
+                        highest_package: "",
+                        average_package: "",
+                        companies_visited: "",
+                      },
+                    ]);
+                  }}
+                >
+                  <FaPlus /> Add More Records
+                </Button>
+                <br />
+                <div className="u-sub">
+              {!submitting ? (
+                <Button className="u-sub-b" type="submit">
+                  Submit Records
+                </Button>
+              ) : (
+                <Button className="u-sub-b" type="submit" disabled>
+                  Submitting...
+                </Button>
+              )}
+            </div>
+            </Form>
+          {/* <Form noValidate validated={validated} onSubmit={handleSubmit} method="POST">
             {placementData.map((data, index) => (
               <div key={index}>
                 <Row className="mb-3">
@@ -393,7 +607,7 @@ export default function Upload() {
                 </Button>
               )}
             </div>
-          </Form>
+          </Form> */}
         </div>
       </Container>
     </div>
