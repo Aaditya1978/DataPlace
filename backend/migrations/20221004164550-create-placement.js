@@ -37,13 +37,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       lowest_package: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DOUBLE
       },
       highest_package: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DOUBLE
       },
       average_package: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DOUBLE
       },
       number_of_companies: {
         type: Sequelize.INTEGER

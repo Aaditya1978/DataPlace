@@ -5,10 +5,23 @@ body {
     padding: 0;
 }
 
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.spinner svg{
+    height: 80vh;
+    width: 80vh;
+}
+
 .dashboard {
     font-family: 'Inter', sans-serif;
 
-    .dash{
+    .dashhead{
         text-align: center;
         margin-top: 5vh;
         margin-bottom: 5vh;
@@ -18,8 +31,135 @@ body {
         text-transform: uppercase;
     }
 
-    .tableau-t{
-        margin-top: 2vh;
-        margin-bottom: 10vh;
+    .dashStats{
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        padding: 20px;
+
+        .d-sub-head{
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #5b83da;
+        }
+
+        .dashCards{
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .dashCard{
+                width: 340px;
+                height: 180px;
+                padding: 5px;
+                border-radius: 7px;
+                box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+                transition: all 0.3s ease-in-out;
+
+                &:hover{
+                    cursor: pointer;
+                    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+                    transform: scale(1.02);
+                }
+
+                .card-title{
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 700;
+                    font-size: 1.5rem;
+                    margin-bottom: 10px;
+                    color: #5b83da;
+                    border-bottom: 2px solid #5b83da;
+                }
+
+                .card-text{
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 500;
+                    text-align: justify;
+                    font-size: 1.1rem;
+                    color: #161616;
+                }
+            }
+        }
+    }
+
+    .dash{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .dashChart{
+            width: 600px;
+            margin-bottom: 40px;
+
+            .chart-head{
+                font-family: 'Inter', sans-serif;
+                font-weight: 800;
+                text-align: center;
+                font-size: 1.5rem;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+            }
+
+            .chart-button{
+                display: flex;
+                align-items: center;
+                padding: 5px;
+                border: 2px solid #5b83da;
+                border-radius: 6px;
+                background-color: #fff;
+                color: #000;
+                margin-bottom: 10px;
+
+                .chart-b-icon{
+                    font-size: 2rem;
+                    color: #5b83da;
+                    margin-right: 10px;
+                }
+
+                span{
+                    font-size: 1rem;
+                    font-weight: 600;
+                }
+
+                &:hover{
+                    cursor: pointer;
+                    background-color: #6f8fd4;
+
+                    .chart-b-icon{
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        .d-full-width{
+            width: 800px;
+
+            .utili{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 10px;
+
+                .ut-select{
+                    width: 150px;
+                    border: 2px solid #5b83da;
+                    border-radius: 6px;
+                    background-color: #fff;
+                    color: #000;
+                    outline: none;
+                }
+            }
+        }
     }
 }
