@@ -6,10 +6,6 @@ An interlinked platform for managing and accessing placements records with vario
 - ### Backend - Node.js, Express
 - ### Database - PostgreSQL
 
-### The frontend is hosted on Netlify and Backend on Render.
-
-## Hosted Site Link - https://dataplace.netlify.app
-
 # Setps to Run Code
 
 ## For Frontend
@@ -29,7 +25,7 @@ An interlinked platform for managing and accessing placements records with vario
 
 - First in your server, create .env file and add following variables
 
-  `EMAIL` `PASSWORD` `DB_HOST` `DB_USER` `DB_PASSWORD`
+  `EMAIL` `PASSWORD` `DB_HOST` `DB_USER` `DB_PASSWORD` `OPENAI_API_KEY`
 
 - ` cd backend `
 
