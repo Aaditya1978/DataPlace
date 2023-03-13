@@ -4,6 +4,7 @@ const db = require("../models/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const excel = require("exceljs");
+const { send_block_mail, send_unblock_mail } = require("../utils/mailSend");
 const Admin = db.admin;
 const College = db.college;
 const Placement = db.placement;
@@ -232,6 +233,60 @@ Router.get("/get_data_by_college/:college", async (req, res) => {
   });
 });
 
+
+Router.post("/block_college", async (req, res) => {
+  const college_id = req.body.college_id;
+  const block_reason = req.body.block_reason;
+  const email = req.body.email;
+  College.update(
+    {
+      isBlocked: true,
+    },
+    {
+      where: {
+        id: college_id,
+      },
+    }
+  ).then(async (data) => {
+    await send_block_mail(email, block_reason);
+    res.status(200).send({
+      message: "College blocked successfully!",
+    });
+  })
+  .catch((err) => {
+    res.status(400).send({
+      message: "Some error occurred while blocking college!",
+    });
+  });
+});
+
+
+Router.post("/unblock_college", async (req, res) => {
+  const college_id = req.body.college_id;
+  const email = req.body.email;
+  College.update(
+    {
+      isBlocked: false,
+    },
+    {
+      where: {
+        id: college_id,
+      },
+    }
+  ).then(async (data) => {
+    await send_unblock_mail(email);
+    res.status(200).send({
+      message: "College unblocked successfully!",
+    });
+  })
+  .catch((err) => {
+    res.status(400).send({
+      message: "Some error occurred while unblocking college!",
+    });
+  });
+});
+
+
 Router.get("/get_contact", async (req, res) => {
   await Contact.findAll({
     where: {
@@ -245,9 +300,9 @@ Router.get("/get_contact", async (req, res) => {
 });
 
 Router.post("/contact_response", async (req, res) => {
-  const admin_id = req.body.admin_id;
+  const admin_id = parseInt(req.body.admin_id);
   const response = req.body.response;
-  const contact_id = req.body.contact_id;
+  const contact_id = parseInt(req.body.contact_id);
   Contact.update(
     {
       response: response,
