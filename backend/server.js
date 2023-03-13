@@ -7,6 +7,7 @@ const placementRoutes = require("./routes/placement.routes");
 const adminRoutes = require("./routes/admin.routes");
 const contactRoutes = require("./routes/contact.routes");
 const placementDataRoutes = require("./routes/placementData.routes");
+const jobRoutes = require("./routes/job.routes");
 
 // port
 const PORT = process.env.PORT || 5000;
@@ -43,6 +44,9 @@ app.use("/api/contact", contactRoutes);
 
 // placement data routes
 app.use("/api/placementData", placementDataRoutes);
+
+// job routes
+app.use("/api/job", jobRoutes);
 
 
 // run server

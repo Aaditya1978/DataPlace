@@ -5,6 +5,26 @@ body {
     padding: 0;
 }
 
+.ams-modal{
+    background: none;
+
+    .block-button{
+        background-color: #5b83da;
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        border-color: #5b83da;
+        transition: 0.3s;
+
+        &:hover{
+            transform: scale(1.03);
+            background-color: #5b83da;
+            color: #fff;
+        }
+    }
+}
+
 .adminmanagestate {
     font-family: 'Inter', sans-serif;
 
@@ -89,6 +109,26 @@ body {
 
                 &:hover{
                     background-color: #5b83da;
+                    color: #fff;
+                }
+            }
+
+            .danger{
+                border-color: #da5b5b;
+                color: #da5b5b;
+
+                &:hover{
+                    background-color: #da5b5b;
+                    color: #fff;
+                }
+            }
+
+            .success{
+                border-color: #5bda5b;
+                color: #5bda5b;
+
+                &:hover{
+                    background-color: #5bda5b;
                     color: #fff;
                 }
             }

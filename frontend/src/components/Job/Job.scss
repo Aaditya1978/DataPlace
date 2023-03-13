@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.spinner svg{
+    height: 80vh;
+    width: 80vh;
+}
+
+.job {
+    font-family: 'Inter', sans-serif;
+
+    .j-header{
+
+        .j-head-img{
+            width: 100%;
+        }
+
+        .j-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .j-body{
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .j-search{
+            width: 100%;
+
+            .input-g{
+                display: flex;
+                justify-content: center;
+
+                input{
+                    width: 450px;
+                    -webkit-box-shadow: none!important;
+                    outline: -webkit-focus-ring-color auto 0px!important;
+                    border: 2px solid #5b83da;
+                }
+
+                button{
+                    background-color: #5b83da;
+                    width: 130px;
+                    color: #ffffff;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.3rem;
+                    font-weight: 600;
+                    border: 3px solid #5b83da;
+                    transition: 0.3s;
+
+                    &:hover{
+                        background-color: #ffffff;
+                        color: #5b83da;
+                    }
+
+                }
+            }
+        }
+
+        .j-list{
+            margin-top: 30px;
+            margin-bottom: 20px;
+
+            .j-no-data{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Inter', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                color: #5b83da;
+            }
+
+            .j-card{
+                position: relative;
+                border: 2px solid #5b83da;
+                border-radius: 7px;
+                margin-bottom: 20px;
+                box-shadow: 0 0 7px rgba(0,0,0,0.3);
+                cursor: pointer;
+                transition: 0.3s;
+                padding: 7px;
+                height: 320px;
+
+                &:hover{
+                    box-shadow: 0 0 7px rgba(0,0,0,0.5);
+                    transform: scale(1.02);
+                }
+
+                .jc-head{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    height: fit-content;
+                    color: #5b83da;
+                    margin-bottom: 20px;
+                }
+
+                .jc-subhead{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                    color: #292929;
+                    margin-bottom: 20px;
+                }
+
+                .jc-text{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1rem;
+                    font-weight: 400;
+                    color: #292929;
+
+                    span{
+                        color: #5b83da;
+                        font-weight: 500;
+                    }
+                }
+
+                .jc-button{
+                    position: absolute;
+                    bottom: 10px;
+                    background-color: #5b83da;
+                    width: 100px;
+                    color: #ffffff;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.1rem;
+                    font-weight: 600;
+                    border: 2px solid #5b83da;
+                    transition: 0.3s;
+
+                    &:hover{
+                        background-color: #ffffff;
+                        color: #5b83da;
+                    }
+                }
+            }
+
+            .j-pagination-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+                margin-bottom: 40px;
+
+                .j-pagination{
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1.4rem;
+                    font-weight: 500;
+                    margin: 0 10px;
+
+                    .page-item a{
+                        color: #5b83da;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover{
+                            color: #292929;
+                        }
+                    }
+
+                    .active span{
+                        background-color: #5b83da;
+                        color: #ffffff;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+    }
+}

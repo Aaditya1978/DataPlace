@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Row, Col, Table, Form, Button } from "react-bootstrap";
 import axios from "axios";
-import { AiTwotoneDelete, AiOutlineCloudDownload } from "react-icons/ai";
+import { AiTwotoneDelete, AiFillEdit, AiOutlineCloudDownload } from "react-icons/ai";
+import { MdOutlineDoneOutline, MdOutlineCancel } from "react-icons/md";
 import NavBar from "../NavBar/NavBar";
 import manage_head_image from "../../images/manage_1.png";
 import "./Manage.scss";
@@ -25,6 +26,19 @@ export default function Manage() {
   const [branchList, setBranchList] = useState([]);
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedBranch, setSelectedBranch] = useState("");
+  const [editingRow, setEditingRow] = useState(-1);
+  const [editData, setEditData] = useState({
+    id: -1,
+    students: 0,
+    eligible_students: 0,
+    pnr: 0,
+    placed: 0,
+    offer_letters: 0,
+    lowest_package: 0,
+    highest_package: 0,
+    average_package: 0,
+    companies_visited: 0,
+  });
 
   useEffect(() => {
     if (localStorage.getItem("token") === null) {
@@ -97,6 +111,88 @@ export default function Manage() {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const ChangeEditRow = (row_id) => {
+    if (editingRow === row_id) {
+      setEditData({
+        id: -1,
+        students: 0,
+        eligible_students: 0,
+        pnr: 0,
+        placed: 0,
+        offer_letters: 0,
+        lowest_package: 0,
+        highest_package: 0,
+        average_package: 0,
+        companies_visited: 0,
+      });
+      setEditingRow(-1);
+    } else {
+      const pindex = placement.findIndex((item) => item.id === row_id);
+      setEditData({
+        id: row_id,
+        students: placement[pindex].total_students,
+        eligible_students: placement[pindex].eligible_students,
+        pnr: placement[pindex].pnr_students,
+        placed: placement[pindex].placed_students,
+        offer_letters: placement[pindex].offer_letters,
+        lowest_package: placement[pindex].lowest_package,
+        highest_package: placement[pindex].highest_package,
+        average_package: placement[pindex].average_package,
+        companies_visited: placement[pindex].number_of_companies,
+      });
+      setEditingRow(row_id);
+    }
+  };
+
+  const handleOnChange = (e) => {
+		const { name, value } = e.target;
+    setEditData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+	};
+
+  const checkValidity = (value) => {
+    if(value === "") return true;
+    let val = parseInt(value);
+    if(val < 0) return true;
+    return false;
+  }
+
+  const handleUpdate = () => {
+    axios
+      .put(
+        `${process.env.REACT_APP_BASE_URL}/api/placement/update_data`, {
+          data: editData,
+        }
+      )
+      .then((res) => {
+        const pindex = placement.findIndex(
+          (item) => item.id === editingRow
+        );
+        let temp = [...placement];
+        temp[pindex] = res.data.placement;
+        setPlacement(temp);
+        setEditData({
+          id: -1,
+          students: 0,
+          eligible_students: 0,
+          pnr: 0,
+          placed: 0,
+          offer_letters: 0,
+          lowest_package: 0,
+          highest_package: 0,
+          average_package: 0,
+          companies_visited: 0,
+        });
+        setEditingRow(-1);
+        alert(res.data.message);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
       });
   };
 
@@ -208,6 +304,114 @@ export default function Manage() {
                       }
                     })
                     .map((item, index) => (
+                      editingRow === item.id ? (
+                        <tr key={index}>
+                          <td>{index + 1}</td>
+                          <td>{item.year}</td>
+                          <td>{item.branch}</td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="students"
+                              value={editData.students}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.students)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="eligible_students"
+                              value={editData.eligible_students}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.eligible_students)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="pnr"
+                              value={editData.pnr}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.pnr)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="placed"
+                              value={editData.placed}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.placed)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="offer_letters"
+                              value={editData.offer_letters}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.offer_letters)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="lowest_package"
+                              value={editData.lowest_package}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.lowest_package)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="highest_package"
+                              value={editData.highest_package}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.highest_package)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="average_package"
+                              value={editData.average_package}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.average_package)}
+                            />
+                          </td>
+                          <td>
+                            <Form.Control
+                              required
+                              type="number"
+                              name="companies_visited"
+                              value={editData.companies_visited}
+                              onChange={(e) => handleOnChange(e)}
+                              isInvalid={checkValidity(editData.companies_visited)}
+                            />
+                          </td>
+                          <td>
+                            <MdOutlineDoneOutline
+                              className="m-done-icon"
+                              onClick={handleUpdate}
+                            />
+                            {' '}
+                            <MdOutlineCancel 
+                              className="m-cancel-icon" 
+                              onClick={() => ChangeEditRow(item.id)}
+                            />
+                          </td>
+                        </tr>
+                      ) : (
                       <tr key={index}>
                         <td>{index + 1}</td>
                         <td>{item.year}</td>
@@ -226,8 +430,14 @@ export default function Manage() {
                             className="m-delete-icon"
                             onClick={() => handleDelete(item.id)}
                           />
+                          {' '}
+                          <AiFillEdit 
+                            className="m-edit-icon" 
+                            onClick={() => ChangeEditRow(item.id)}
+                          />
                         </td>
                       </tr>
+                      )
                     ))}
               </tbody>
             </Table>

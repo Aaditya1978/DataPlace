@@ -92,6 +92,10 @@ export default function Upload() {
       )
       .then((res) => {
         setCollege(res.data.college);
+        if(res.data.college.isBlocked){
+          alert("Your account has been blocked by the admin. You cannot access this feature. Please contact admin for more details.");
+          navigate("/profile");
+        }
       })
       .catch((err) => {
         alert(err.response.data.message);

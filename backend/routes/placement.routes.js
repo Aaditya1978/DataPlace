@@ -68,6 +68,46 @@ Router.get("/get_data/:college_id", async (req, res) => {
   });
 });
 
+
+Router.put("/update_data", async (req, res) => {
+  // update data
+  const data = req.body.data;
+  Placement.update(
+    {
+      total_students: data.students,
+      eligible_students: data.eligible_students,
+      pnr_students: data.pnr,
+      placed_students: data.placed,
+      offer_letters: data.offer_letters,
+      lowest_package: data.lowest_package,
+      highest_package: data.highest_package,
+      average_package: data.average_package,
+      number_of_companies: data.companies_visited,
+    },
+    {
+      where: {
+        id: data.id,
+      },
+    }
+  ).then(async (datas) => {
+    const placement = await Placement.findOne({
+      where: {
+        id: data.id,
+      },
+    });
+    res.status(200).send({
+      message: "Data updated successfully!",
+      placement: placement,
+    });
+  })
+  .catch((err) => {
+    res.status(500).send({
+      message: err.message,
+    });
+  });
+});
+
+
 Router.delete("/delete_data/:college_id/:id", async (req, res) => {
   // delete data
   Placement.destroy({

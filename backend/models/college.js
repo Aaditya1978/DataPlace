@@ -21,7 +21,8 @@ module.exports = (sequelize, DataTypes) => {
     district: DataTypes.STRING,
     state: DataTypes.STRING,
     pincode: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    isBlocked: DataTypes.BOOLEAN,
   }, {
     sequelize,
     modelName: 'college',

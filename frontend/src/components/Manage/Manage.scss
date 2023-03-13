@@ -103,11 +103,53 @@ body {
                 .table{
                     border-color: #3b3b3b;
 
+                    input::-webkit-outer-spin-button,
+                    input::-webkit-inner-spin-button {
+                        -webkit-appearance: none;
+                        margin: 0;
+                    }
+
                     thead{
                         color: #5b83da;
                     }
 
                     .m-delete-icon{
+                        color: #da5b5b;
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover{
+                            color: #dd3d3d;
+                            transform: scale(1.1);
+                        }
+                    }
+
+                    .m-edit-icon{
+                        color: #5bda66;
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover{
+                            color: #23cf2b;
+                            transform: scale(1.1);
+                        }
+                    }
+
+                    .m-done-icon{
+                        color: #5bda66;
+                        font-size: 22px;
+                        cursor: pointer;
+                        transition: 0.3s;
+
+                        &:hover{
+                            color: #23cf2b;
+                            transform: scale(1.1);
+                        }
+                    }
+
+                    .m-cancel-icon{
                         color: #da5b5b;
                         font-size: 22px;
                         cursor: pointer;

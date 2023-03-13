@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Container, Row, Col, Table, Button } from "react-bootstrap";
+import { Container, Row, Col, Table, Button, Modal, Form } from "react-bootstrap";
 import axios from "axios";
 import AdminNav from "./AdminNav";
 import AdminNoDataImg from "../../images/admin_no_data.png";
@@ -16,8 +16,23 @@ export default function AdminManageState() {
     name: "",
     email: "",
   });
-
   const [collegeData, setCollegeData] = useState([]);
+  const [modalShow, setModalShow] = useState(false);
+  const [blockReason, setBlockReason] = useState("");
+  const [blockCollegeId, setBlockCollegeId] = useState("");
+  const [blockCollegeEmail, setBlockCollegeEmail] = useState("");
+
+  const handleModalShow = (college_id, college_email) => {
+    setBlockCollegeId(college_id);
+    setBlockCollegeEmail(college_email);
+    setModalShow(true);
+  };
+
+  const handleModalClose = () => {
+    setBlockCollegeEmail("");
+    setBlockCollegeId("");
+    setModalShow(false);
+  };
 
   useEffect(() => {
     if (localStorage.getItem("admin_token") === null) {
@@ -68,6 +83,62 @@ export default function AdminManageState() {
         console.log(err);
       });
   };
+
+  const handleBlock = () => {
+    if(blockReason === "") {
+      alert("Please enter the reason for blocking the college.");
+      return;
+    }
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/block_college`,
+        {
+          college_id: blockCollegeId,
+          email: blockCollegeEmail,
+          block_reason: blockReason,
+        }
+      )
+      .then((res) => {
+        alert(res.data.message);
+        const index = collegeData.findIndex(
+          (college) => college.id === blockCollegeId
+        );
+        const temp = [...collegeData];
+        temp[index].isBlocked = true;
+        setCollegeData(temp);
+        setBlockCollegeEmail("");
+        setBlockCollegeId("");
+        setBlockReason("");
+        setModalShow(false);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
+
+  const handleUnblock = (college_id, college_email) => {
+    axios
+      .post(
+        `${process.env.REACT_APP_BASE_URL}/api/admin/unblock_college`,
+        {
+          college_id: college_id,
+          email: college_email,
+        }
+      )
+      .then((res) => {
+        alert(res.data.message);
+        const index = collegeData.findIndex(
+          (college) => college.id === college_id
+        );
+        const temp = [...collegeData];
+        temp[index].isBlocked = false;
+        setCollegeData(temp);
+      })
+      .catch((err) => {
+        alert(err.response.data.message);
+      });
+  };
+
 
   return (
     <div className="adminmanagestate">
@@ -128,26 +199,49 @@ export default function AdminManageState() {
                       <td>{college.pincode}</td>
                       <td width={"100%"}>
                         <Row>
-                        <Col md={12}>
-                        <Button
-                          variant="outline-primary"
-                          className="ams-body-btn"
-                          onClick={() =>
-                            navigate(`/dataplace_admin/manage/${state}/${college.id}`)
-                          }
-                        >
-                          View Placement Data
-                        </Button>
-                        </Col>
-                        <Col md={12}>
-                        <Button
-                          variant="outline-primary"
-                          className="ams-body-btn"
-                          onClick={ () => handleDownload(college.id, college.name) }
-                        >
-                          Download Placement Data
-                        </Button>
-                        </Col>
+                          <Col md={12}>
+                            <Button
+                              variant="outline-primary"
+                              className="ams-body-btn"
+                              onClick={() =>
+                                navigate(`/dataplace_admin/manage/${state}/${college.id}`)
+                              }
+                            >
+                              View Placement Data
+                            </Button>
+                          </Col>
+                          <Col md={12}>
+                            <Button
+                              variant="outline-primary"
+                              className="ams-body-btn"
+                              onClick={ () => handleDownload(college.id, college.name) }
+                            >
+                              Download Placement Data
+                            </Button>
+                          </Col>
+                          <Col md={12}>
+                            { !college.isBlocked ? (
+                              <Button
+                                variant="outline-primary"
+                                className="ams-body-btn danger"
+                                onClick={() =>
+                                  handleModalShow(college.id, college.email)
+                                }
+                              >
+                                Block College
+                              </Button>
+                            ) : (
+                              <Button
+                                variant="outline-primary"
+                                className="ams-body-btn success"
+                                onClick={() =>
+                                  handleUnblock(college.id, college.email)
+                                }
+                              >
+                                Unblock College
+                              </Button>
+                            )}
+                          </Col>
                         </Row>
                       </td>
                     </tr>
@@ -158,6 +252,34 @@ export default function AdminManageState() {
           </div>
         )}
       </Container>
+
+      {/* Modal */}
+      <Modal className="ams-modal" show={modalShow} onHide={handleModalClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Reason for Bloacking</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group>
+            <Form.Label>Enter Reason</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              required
+              value={blockReason}
+              onChange={(e) => setBlockReason(e.target.value)}
+            />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button className="block-button" onClick={handleBlock}>
+            Block
+          </Button>
+          <Button variant="secondary" onClick={handleModalClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 }
