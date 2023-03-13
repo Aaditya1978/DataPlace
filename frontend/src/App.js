@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import Upload from "./components/Upload/Upload";
 import Manage from "./components/Manage/Manage";
 import Contact from "./components/Contact/Contact";
+import Job from "./components/Job/Job";
 import Profile from "./components/Profile/Profile";
 import About from "./components/About/About";
 
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/upload" element={<Upload />} />
           <Route exact path="/manage" element={<Manage />} />
+          <Route exact path="/job" element={<Job />} />
           <Route exact path="/contact" element={<Contact />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/about" element={<About />} />
