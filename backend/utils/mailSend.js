@@ -217,8 +217,117 @@ async function send_password_reset_mail(email) {
   );
 }
 
+
+async function send_block_mail(email, reason) {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  transporter.sendMail(
+    {
+      from: process.env.EMAIL,
+      to: email,
+      subject: "Your Account has been blocked for DataPlace",
+      html: `
+        <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+          <div style="margin:50px auto;width:70%;padding:20px 0">
+            <div style="border-bottom:1px solid #eee">
+              <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">
+                DataPlace
+              </a>
+            </div>
+            <p style="font-size:1.1em">Hi,</p>
+            <p>
+              We are sorry to inform you that your account has been <strong>blocked</strong> for DataPlace. The block is due to some violation of our terms and conditions.
+              The <strong>reason being is mentioned below</strong>, please read it carefully. Still if you have any queries please feel free to <strong>contact us</strong>.
+            </p>
+            <p style="color:#5b83da;font-weight:600">
+              ${reason}
+            </p>
+            <p style="color:#000000;font-weight:600">
+              For the time you are blocked, you will not be able to access analytics, jobs and Upload Section. <br/>
+              <span style="color:#25e685;font-weight:550">If you want to get unblocked, please write back to us in query section</span>
+            </p>
+            <p style="font-size:1.3em;font-weight:700;">Regards,<br />DataPlace Team</p>
+            <hr style="border:none;border-top:1px solid #eee" />
+          </div>
+        </div>
+      `,
+    },
+    function (err, info) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Email Sent");
+      }
+    });
+}
+
+
+async function send_unblock_mail(email) {
+  let transporter = nodemailer.createTransport({
+    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+
+  transporter.sendMail(
+    {
+      from: process.env.EMAIL,
+      to: email,
+      subject: "Your Account has been unblocked for DataPlace",
+      html: `
+        <div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+          <div style="margin:50px auto;width:70%;padding:20px 0">
+            <div style="border-bottom:1px solid #eee">
+              <a href="" style="font-size:1.4em;color: #00466a;text-decoration:none;font-weight:600">
+                DataPlace
+              </a>
+            </div>
+            <p>
+              Hey, we are happy to inform you that your account has been unblocked for DataPlace. You can now access all the features of DataPlace.
+            </p>
+            <p style="color:#5b83da;font-weight:600">
+              But please try to follow our terms and conditions so that you don't get blocked again. 😀
+            </p>
+            <p style="font-size:1.3em;font-weight:700;">Regards,<br />DataPlace Team</p>
+            <hr style="border:none;border-top:1px solid #eee" />
+          </div>
+        </div>
+      `
+    },
+    function (err, info) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Email Sent");
+      }
+    });
+}
+
+
 module.exports = {
   send_register_mail,
   send_otp_mail,
   send_password_reset_mail,
+  send_block_mail,
+  send_unblock_mail,
 };
