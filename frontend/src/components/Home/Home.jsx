@@ -345,7 +345,7 @@ export default function Home() {
                     <div className="f-card-heading">Security</div>
                     <div className="f-card-text">
                       We use advanced security measures to protect your data. We
-                      use industry standard encryption and data security
+                      are using industry standard encryption and data security
                       measures to ensure the safety of your data. The data is
                       stored in a secured cloud storage.
                     </div>

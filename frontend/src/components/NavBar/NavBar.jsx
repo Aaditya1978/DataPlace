@@ -57,6 +57,12 @@ export default function NavBar() {
                 Jobs
               </NavLink>
               <NavLink
+                to="/feedback"
+                className= {({ isActive }) => isActive ? "active d-nav-link": 'd-nav-link'}
+              >
+                Feedback
+              </NavLink>
+              <NavLink
                 to="/contact"
                 className= {({ isActive }) => isActive ? "active d-nav-link": 'd-nav-link'}
               >

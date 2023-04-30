@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.feedback {
+    font-family: 'Inter', sans-serif;
+
+    .f-header{
+
+        .f-head-img{
+            width: 100%;
+        }
+
+        .f-head-text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    .f-body{
+        margin-top: 10px;
+        margin-bottom: 60px;
+
+        .f-row{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+              margin: 0;
+            }
+
+
+            .f-input{
+                width: 300px;
+                border-radius: 7px;
+                border-color: #5b83da;
+                font-family: 'Inter', sans-serif;
+                font-size: 1.2rem;
+                font-weight: 600;
+                margin-right: 10px;
+            }
+
+            .f-btn{
+                width: 170px;
+                border-color: #5b83da;
+                border-radius: 7px;
+                font-size: 1.2rem;
+                font-family: 'Inter', sans-serif;
+                font-weight: 600;
+                color: #5b83da;
+
+                &:hover{
+                    background-color: #5b83da;
+                    color: white;
+                }
+            }
+        }
+
+        .f-table{
+            margin-top: 50px;
+            margin-bottom: 20px;
+
+            h1{
+                font-size: 1.8rem;
+                font-weight: 600;
+                color: #5b83da;
+                text-align: center;
+            }
+        }
+
+        table{
+            width: 100%;
+            margin: 0 auto;
+
+            .b-row{
+
+                button{
+                    width: 110px;
+                    margin-right: 10px;
+                    border-radius: 7px;
+                    border-color: #5b83da;
+                    color: #5b83da;
+                    font-family: 'Inter', sans-serif;
+
+                    &:hover{
+                        background-color: #5b83da;
+                        color: white;
+                    }
+                }
+
+                .dang{
+                    background-color: #ffffff;
+                    color: #ff0000;
+                    border-color: #ff0000;
+
+                    &:hover{
+                        background-color: #ff0000;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
