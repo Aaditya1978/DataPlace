@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.feedbackform {
+    font-family: 'Inter', sans-serif;
+    margin: 30px 10px;
+
+    .cont{
+        padding: 30px 25px;
+        border: 2px solid #5b83da;
+        border-radius: 10px;
+    }
+
+    .header{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 20px;
+
+        h1{
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #5b83da;
+            text-align: center;
+        }
+
+        p{
+            padding: 0px 30px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #252525;
+            text-align: justify;
+
+            span{
+                color: #5b83da;
+            }
+        }
+    }
+
+    form{
+        label{
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #252525;
+            margin-bottom: 5px;
+        }
+
+        input{
+            width: 70%;
+            border-radius: 7px;
+            border-color: #5b83da;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+        }
+
+        select{
+            width: 70%;
+            border-radius: 7px;
+            border-color: #5b83da;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+        }
+
+        textarea{
+            width: 70%;
+            border-radius: 7px;
+            border-color: #5b83da;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+        }
+
+        button{
+            width: 150px;
+            border-color: #5b83da;
+            border-radius: 7px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            background-color: #5b83da;
+            color: #fff;
+            cursor: pointer;
+
+            &:hover{
+                background-color: #fff;
+                color: #5b83da;
+            }
+        }
+    }
+}
